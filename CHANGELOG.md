@@ -1,7 +1,8 @@
 ## HEAD (Unreleased)
-- [Helm/Release] Handle partial failure during create/update (https://github.com/pulumi/pulumi-kubernetes/pull/1880)
 
+- [Helm/Release] Handle partial failure during create/update (https://github.com/pulumi/pulumi-kubernetes/pull/1880)
 - Fix detailed diff for server-side apply (https://github.com/pulumi/pulumi-kubernetes/pull/1873)
+- Don't use the last-applied-configuration annotation for CRDs (https://github.com/pulumi/pulumi-kubernetes/pull/1882)
 
 ## 3.14.1 (January 18, 2022)
 
