@@ -1506,9 +1506,7 @@ type ListMeta struct {
 	RemainingItemCount *int `pulumi:"remainingItemCount"`
 	// String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 	ResourceVersion *string `pulumi:"resourceVersion"`
-	// selfLink is a URL representing this object. Populated by the system. Read-only.
-	//
-	// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+	// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 	SelfLink *string `pulumi:"selfLink"`
 }
 
@@ -1531,9 +1529,7 @@ type ListMetaArgs struct {
 	RemainingItemCount pulumi.IntPtrInput `pulumi:"remainingItemCount"`
 	// String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 	ResourceVersion pulumi.StringPtrInput `pulumi:"resourceVersion"`
-	// selfLink is a URL representing this object. Populated by the system. Read-only.
-	//
-	// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+	// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 	SelfLink pulumi.StringPtrInput `pulumi:"selfLink"`
 }
 
@@ -1630,9 +1626,7 @@ func (o ListMetaOutput) ResourceVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListMeta) *string { return v.ResourceVersion }).(pulumi.StringPtrOutput)
 }
 
-// selfLink is a URL representing this object. Populated by the system. Read-only.
-//
-// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 func (o ListMetaOutput) SelfLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListMeta) *string { return v.SelfLink }).(pulumi.StringPtrOutput)
 }
@@ -1691,9 +1685,7 @@ func (o ListMetaPtrOutput) ResourceVersion() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// selfLink is a URL representing this object. Populated by the system. Read-only.
-//
-// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 func (o ListMetaPtrOutput) SelfLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ListMeta) *string {
 		if v == nil {
@@ -1717,7 +1709,7 @@ type ManagedFieldsEntry struct {
 	Operation *string `pulumi:"operation"`
 	// Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.
 	Subresource *string `pulumi:"subresource"`
-	// Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
+	// Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.
 	Time *string `pulumi:"time"`
 }
 
@@ -1746,7 +1738,7 @@ type ManagedFieldsEntryArgs struct {
 	Operation pulumi.StringPtrInput `pulumi:"operation"`
 	// Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource.
 	Subresource pulumi.StringPtrInput `pulumi:"subresource"`
-	// Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
+	// Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.
 	Time pulumi.StringPtrInput `pulumi:"time"`
 }
 
@@ -1832,7 +1824,7 @@ func (o ManagedFieldsEntryOutput) Subresource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedFieldsEntry) *string { return v.Subresource }).(pulumi.StringPtrOutput)
 }
 
-// Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
+// Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.
 func (o ManagedFieldsEntryOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedFieldsEntry) *string { return v.Time }).(pulumi.StringPtrOutput)
 }
@@ -1899,9 +1891,7 @@ type ObjectMeta struct {
 	//
 	// Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 	ResourceVersion *string `pulumi:"resourceVersion"`
-	// SelfLink is a URL representing this object. Populated by the system. Read-only.
-	//
-	// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+	// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 	SelfLink *string `pulumi:"selfLink"`
 	// UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.
 	//
@@ -1962,9 +1952,7 @@ type ObjectMetaArgs struct {
 	//
 	// Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
 	ResourceVersion pulumi.StringPtrInput `pulumi:"resourceVersion"`
-	// SelfLink is a URL representing this object. Populated by the system. Read-only.
-	//
-	// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+	// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 	SelfLink pulumi.StringPtrInput `pulumi:"selfLink"`
 	// UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.
 	//
@@ -2132,9 +2120,7 @@ func (o ObjectMetaOutput) ResourceVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectMeta) *string { return v.ResourceVersion }).(pulumi.StringPtrOutput)
 }
 
-// SelfLink is a URL representing this object. Populated by the system. Read-only.
-//
-// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 func (o ObjectMetaOutput) SelfLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectMeta) *string { return v.SelfLink }).(pulumi.StringPtrOutput)
 }
@@ -2322,9 +2308,7 @@ func (o ObjectMetaPtrOutput) ResourceVersion() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// SelfLink is a URL representing this object. Populated by the system. Read-only.
-//
-// DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+// selfLink is DEPRECATED read-only field that is no longer populated by the system.
 func (o ObjectMetaPtrOutput) SelfLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectMeta) *string {
 		if v == nil {
@@ -2350,7 +2334,7 @@ func (o ObjectMetaPtrOutput) Uid() pulumi.StringPtrOutput {
 type OwnerReference struct {
 	// API version of the referent.
 	ApiVersion string `pulumi:"apiVersion"`
-	// If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
+	// If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
 	BlockOwnerDeletion *bool `pulumi:"blockOwnerDeletion"`
 	// If true, this reference points to the managing controller.
 	Controller *bool `pulumi:"controller"`
@@ -2377,7 +2361,7 @@ type OwnerReferenceInput interface {
 type OwnerReferenceArgs struct {
 	// API version of the referent.
 	ApiVersion pulumi.StringInput `pulumi:"apiVersion"`
-	// If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
+	// If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
 	BlockOwnerDeletion pulumi.BoolPtrInput `pulumi:"blockOwnerDeletion"`
 	// If true, this reference points to the managing controller.
 	Controller pulumi.BoolPtrInput `pulumi:"controller"`
@@ -2446,7 +2430,7 @@ func (o OwnerReferenceOutput) ApiVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v OwnerReference) string { return v.ApiVersion }).(pulumi.StringOutput)
 }
 
-// If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
+// If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
 func (o OwnerReferenceOutput) BlockOwnerDeletion() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v OwnerReference) *bool { return v.BlockOwnerDeletion }).(pulumi.BoolPtrOutput)
 }

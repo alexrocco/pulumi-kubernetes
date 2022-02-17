@@ -16,25 +16,25 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core.V1
     public class PersistentVolumeClaimConditionArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Last time we probed the condition.
+        /// lastProbeTime is the time we probed the condition.
         /// </summary>
         [Input("lastProbeTime")]
         public Input<string>? LastProbeTime { get; set; }
 
         /// <summary>
-        /// Last time the condition transitioned from one status to another.
+        /// lastTransitionTime is the time the condition transitioned from one status to another.
         /// </summary>
         [Input("lastTransitionTime")]
         public Input<string>? LastTransitionTime { get; set; }
 
         /// <summary>
-        /// Human-readable message indicating details about last transition.
+        /// message is the human-readable message indicating details about last transition.
         /// </summary>
         [Input("message")]
         public Input<string>? Message { get; set; }
 
         /// <summary>
-        /// Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
+        /// reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
         /// </summary>
         [Input("reason")]
         public Input<string>? Reason { get; set; }

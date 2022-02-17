@@ -31,7 +31,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Core.V1
         private InputList<Pulumi.Kubernetes.Types.Inputs.Core.V1.ContainerStatusArgs>? _containerStatuses;
 
         /// <summary>
-        /// The list has one entry per container in the manifest. Each entry is currently the output of `docker inspect`. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
+        /// The list has one entry per container in the manifest. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
         /// </summary>
         public InputList<Pulumi.Kubernetes.Types.Inputs.Core.V1.ContainerStatusArgs> ContainerStatuses
         {

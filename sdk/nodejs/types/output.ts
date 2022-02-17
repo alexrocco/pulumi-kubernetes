@@ -6458,19 +6458,19 @@ export namespace core {
          */
         export interface AWSElasticBlockStoreVolumeSource {
             /**
-             * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+             * fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
             fsType: string;
             /**
-             * The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
+             * partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
              */
             partition: number;
             /**
-             * Specify "true" to force and set the ReadOnly property in VolumeMounts to "true". If omitted, the default is "false". More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+             * readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
             readOnly: boolean;
             /**
-             * Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+             * volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
             volumeID: string;
         }
@@ -6512,27 +6512,27 @@ export namespace core {
          */
         export interface AzureDiskVolumeSource {
             /**
-             * Host Caching mode: None, Read Only, Read Write.
+             * cachingMode is the Host Caching mode: None, Read Only, Read Write.
              */
             cachingMode: string;
             /**
-             * The Name of the data disk in the blob storage
+             * diskName is the Name of the data disk in the blob storage
              */
             diskName: string;
             /**
-             * The URI the data disk in the blob storage
+             * diskURI is the URI of data disk in the blob storage
              */
             diskURI: string;
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
+             * fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
             fsType: string;
             /**
-             * Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
+             * kind expected values are Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
              */
             kind: string;
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
         }
@@ -6542,19 +6542,19 @@ export namespace core {
          */
         export interface AzureFilePersistentVolumeSource {
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * the name of secret that contains Azure Storage Account Name and Key
+             * secretName is the name of secret that contains Azure Storage Account Name and Key
              */
             secretName: string;
             /**
-             * the namespace of the secret that contains Azure Storage Account Name and Key default is the same as the Pod
+             * secretNamespace is the namespace of the secret that contains Azure Storage Account Name and Key default is the same as the Pod
              */
             secretNamespace: string;
             /**
-             * Share Name
+             * shareName is the azure Share Name
              */
             shareName: string;
         }
@@ -6564,15 +6564,15 @@ export namespace core {
          */
         export interface AzureFileVolumeSource {
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * the name of secret that contains Azure Storage Account Name and Key
+             * secretName is the  name of secret that contains Azure Storage Account Name and Key
              */
             secretName: string;
             /**
-             * Share Name
+             * shareName is the azure share Name
              */
             shareName: string;
         }
@@ -6582,39 +6582,39 @@ export namespace core {
          */
         export interface CSIPersistentVolumeSource {
             /**
-             * ControllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This is an alpha field and requires enabling ExpandCSIVolumes feature gate. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+             * controllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This is an alpha field and requires enabling ExpandCSIVolumes feature gate. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
             controllerExpandSecretRef: outputs.core.v1.SecretReference;
             /**
-             * ControllerPublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerPublishVolume and ControllerUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+             * controllerPublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerPublishVolume and ControllerUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
             controllerPublishSecretRef: outputs.core.v1.SecretReference;
             /**
-             * Driver is the name of the driver to use for this volume. Required.
+             * driver is the name of the driver to use for this volume. Required.
              */
             driver: string;
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs".
+             * fsType to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs".
              */
             fsType: string;
             /**
-             * NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+             * nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
             nodePublishSecretRef: outputs.core.v1.SecretReference;
             /**
-             * NodeStageSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeStageVolume and NodeStageVolume and NodeUnstageVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
+             * nodeStageSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeStageVolume and NodeStageVolume and NodeUnstageVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
              */
             nodeStageSecretRef: outputs.core.v1.SecretReference;
             /**
-             * Optional: The value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write).
+             * readOnly value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write).
              */
             readOnly: boolean;
             /**
-             * Attributes of the volume to publish.
+             * volumeAttributes of the volume to publish.
              */
             volumeAttributes: {[key: string]: string};
             /**
-             * VolumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required.
+             * volumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required.
              */
             volumeHandle: string;
         }
@@ -6624,23 +6624,23 @@ export namespace core {
          */
         export interface CSIVolumeSource {
             /**
-             * Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
+             * driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
              */
             driver: string;
             /**
-             * Filesystem type to mount. Ex. "ext4", "xfs", "ntfs". If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
+             * fsType to mount. Ex. "ext4", "xfs", "ntfs". If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
              */
             fsType: string;
             /**
-             * NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.
+             * nodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.
              */
             nodePublishSecretRef: outputs.core.v1.LocalObjectReference;
             /**
-             * Specifies a read-only configuration for the volume. Defaults to false (read/write).
+             * readOnly specifies a read-only configuration for the volume. Defaults to false (read/write).
              */
             readOnly: boolean;
             /**
-             * VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+             * volumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
              */
             volumeAttributes: {[key: string]: string};
         }
@@ -6664,27 +6664,27 @@ export namespace core {
          */
         export interface CephFSPersistentVolumeSource {
             /**
-             * Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             monitors: string[];
             /**
-             * Optional: Used as the mounted root, rather than the full Ceph tree, default is /
+             * path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
              */
             path: string;
             /**
-             * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             readOnly: boolean;
             /**
-             * Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             secretFile: string;
             /**
-             * Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             secretRef: outputs.core.v1.SecretReference;
             /**
-             * Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * user is Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             user: string;
         }
@@ -6694,27 +6694,27 @@ export namespace core {
          */
         export interface CephFSVolumeSource {
             /**
-             * Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             monitors: string[];
             /**
-             * Optional: Used as the mounted root, rather than the full Ceph tree, default is /
+             * path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /
              */
             path: string;
             /**
-             * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             readOnly: boolean;
             /**
-             * Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             secretFile: string;
             /**
-             * Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             secretRef: outputs.core.v1.LocalObjectReference;
             /**
-             * Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
+             * user is optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
              */
             user: string;
         }
@@ -6724,19 +6724,19 @@ export namespace core {
          */
         export interface CinderPersistentVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * fsType Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             fsType: string;
             /**
-             * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             readOnly: boolean;
             /**
-             * Optional: points to a secret object containing parameters used to connect to OpenStack.
+             * secretRef is Optional: points to a secret object containing parameters used to connect to OpenStack.
              */
             secretRef: outputs.core.v1.SecretReference;
             /**
-             * volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             volumeID: string;
         }
@@ -6746,19 +6746,19 @@ export namespace core {
          */
         export interface CinderVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             fsType: string;
             /**
-             * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             readOnly: boolean;
             /**
-             * Optional: points to a secret object containing parameters used to connect to OpenStack.
+             * secretRef is optional: points to a secret object containing parameters used to connect to OpenStack.
              */
             secretRef: outputs.core.v1.LocalObjectReference;
             /**
-             * volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             volumeID: string;
         }
@@ -6870,7 +6870,7 @@ export namespace core {
          */
         export interface ConfigMapProjection {
             /**
-             * If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+             * items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
             items: outputs.core.v1.KeyToPath[];
             /**
@@ -6878,7 +6878,7 @@ export namespace core {
              */
             name: string;
             /**
-             * Specify whether the ConfigMap or its keys must be defined
+             * optional specify whether the ConfigMap or its keys must be defined
              */
             optional: boolean;
         }
@@ -6890,11 +6890,11 @@ export namespace core {
          */
         export interface ConfigMapVolumeSource {
             /**
-             * Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+             * defaultMode is optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
             defaultMode: number;
             /**
-             * If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+             * items if unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
             items: outputs.core.v1.KeyToPath[];
             /**
@@ -6902,7 +6902,7 @@ export namespace core {
              */
             name: string;
             /**
-             * Specify whether the ConfigMap or its keys must be defined
+             * optional specify whether the ConfigMap or its keys must be defined
              */
             optional: boolean;
         }
@@ -6912,11 +6912,11 @@ export namespace core {
          */
         export interface Container {
             /**
-             * Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+             * Arguments to the entrypoint. The container image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
             args: string[];
             /**
-             * Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+             * Entrypoint array. Not executed within a shell. The container image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
             command: string[];
             /**
@@ -6928,7 +6928,7 @@ export namespace core {
              */
             envFrom: outputs.core.v1.EnvFromSource[];
             /**
-             * Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.
+             * Container image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.
              */
             image: string;
             /**
@@ -7088,7 +7088,7 @@ export namespace core {
          */
         export interface ContainerStateTerminated {
             /**
-             * Container's ID in the format 'docker://<container_id>'
+             * Container's ID in the format '<type>://<container_id>'
              */
             containerID: string;
             /**
@@ -7136,7 +7136,7 @@ export namespace core {
          */
         export interface ContainerStatus {
             /**
-             * Container's ID in the format 'docker://<container_id>'.
+             * Container's ID in the format '<type>://<container_id>'.
              */
             containerID: string;
             /**
@@ -7234,11 +7234,11 @@ export namespace core {
          */
         export interface EmptyDirVolumeSource {
             /**
-             * What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+             * medium represents what type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
              */
             medium: string;
             /**
-             * Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
+             * sizeLimit is the total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
              */
             sizeLimit: string;
         }
@@ -7270,7 +7270,7 @@ export namespace core {
          */
         export interface EndpointPort {
             /**
-             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
              */
             appProtocol: string;
             /**
@@ -7417,11 +7417,11 @@ export namespace core {
          */
         export interface EphemeralContainer {
             /**
-             * Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+             * Arguments to the entrypoint. The image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
             args: string[];
             /**
-             * Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+             * Entrypoint array. Not executed within a shell. The image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
              */
             command: string[];
             /**
@@ -7433,7 +7433,7 @@ export namespace core {
              */
             envFrom: outputs.core.v1.EnvFromSource[];
             /**
-             * Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images
+             * Container image name. More info: https://kubernetes.io/docs/concepts/containers/images
              */
             image: string;
             /**
@@ -7662,23 +7662,23 @@ export namespace core {
          */
         export interface FCVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
             fsType: string;
             /**
-             * Optional: FC target lun number
+             * lun is Optional: FC target lun number
              */
             lun: number;
             /**
-             * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * Optional: FC target worldwide names (WWNs)
+             * targetWWNs is Optional: FC target worldwide names (WWNs)
              */
             targetWWNs: string[];
             /**
-             * Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
+             * wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
              */
             wwids: string[];
         }
@@ -7688,23 +7688,23 @@ export namespace core {
          */
         export interface FlexPersistentVolumeSource {
             /**
-             * Driver is the name of the driver to use for this volume.
+             * driver is the name of the driver to use for this volume.
              */
             driver: string;
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
+             * fsType is the Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
              */
             fsType: string;
             /**
-             * Optional: Extra command options if any.
+             * options is Optional: this field holds extra command options if any.
              */
             options: {[key: string]: string};
             /**
-             * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
+             * secretRef is Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
              */
             secretRef: outputs.core.v1.SecretReference;
         }
@@ -7714,23 +7714,23 @@ export namespace core {
          */
         export interface FlexVolumeSource {
             /**
-             * Driver is the name of the driver to use for this volume.
+             * driver is the name of the driver to use for this volume.
              */
             driver: string;
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
              */
             fsType: string;
             /**
-             * Optional: Extra command options if any.
+             * options is Optional: this field holds extra command options if any.
              */
             options: {[key: string]: string};
             /**
-             * Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
+             * secretRef is Optional: secretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
              */
             secretRef: outputs.core.v1.LocalObjectReference;
         }
@@ -7740,11 +7740,11 @@ export namespace core {
          */
         export interface FlockerVolumeSource {
             /**
-             * Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
+             * datasetName is Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
              */
             datasetName: string;
             /**
-             * UUID of the dataset. This is unique identifier of a Flocker dataset
+             * datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset
              */
             datasetUUID: string;
         }
@@ -7756,19 +7756,19 @@ export namespace core {
          */
         export interface GCEPersistentDiskVolumeSource {
             /**
-             * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+             * fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
             fsType: string;
             /**
-             * The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+             * partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
             partition: number;
             /**
-             * Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+             * pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
             pdName: string;
             /**
-             * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+             * readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
             readOnly: boolean;
         }
@@ -7793,15 +7793,15 @@ export namespace core {
          */
         export interface GitRepoVolumeSource {
             /**
-             * Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
+             * directory is the target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
              */
             directory: string;
             /**
-             * Repository URL
+             * repository is the URL
              */
             repository: string;
             /**
-             * Commit hash for the specified revision.
+             * revision is the commit hash for the specified revision.
              */
             revision: string;
         }
@@ -7811,19 +7811,19 @@ export namespace core {
          */
         export interface GlusterfsPersistentVolumeSource {
             /**
-             * EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+             * endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
             endpoints: string;
             /**
-             * EndpointsNamespace is the namespace that contains Glusterfs endpoint. If this field is empty, the EndpointNamespace defaults to the same namespace as the bound PVC. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+             * endpointsNamespace is the namespace that contains Glusterfs endpoint. If this field is empty, the EndpointNamespace defaults to the same namespace as the bound PVC. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
             endpointsNamespace: string;
             /**
-             * Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+             * path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
             path: string;
             /**
-             * ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+             * readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
             readOnly: boolean;
         }
@@ -7833,15 +7833,15 @@ export namespace core {
          */
         export interface GlusterfsVolumeSource {
             /**
-             * EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+             * endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
             endpoints: string;
             /**
-             * Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+             * path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
             path: string;
             /**
-             * ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
+             * readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
              */
             readOnly: boolean;
         }
@@ -7909,11 +7909,11 @@ export namespace core {
          */
         export interface HostPathVolumeSource {
             /**
-             * Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+             * path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
              */
             path: string;
             /**
-             * Type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+             * type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
              */
             type: string;
         }
@@ -7923,47 +7923,47 @@ export namespace core {
          */
         export interface ISCSIPersistentVolumeSource {
             /**
-             * whether support iSCSI Discovery CHAP authentication
+             * chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
              */
             chapAuthDiscovery: boolean;
             /**
-             * whether support iSCSI Session CHAP authentication
+             * chapAuthSession defines whether support iSCSI Session CHAP authentication
              */
             chapAuthSession: boolean;
             /**
-             * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
+             * fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
              */
             fsType: string;
             /**
-             * Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
+             * initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
              */
             initiatorName: string;
             /**
-             * Target iSCSI Qualified Name.
+             * iqn is Target iSCSI Qualified Name.
              */
             iqn: string;
             /**
-             * iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+             * iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
              */
             iscsiInterface: string;
             /**
-             * iSCSI Target Lun number.
+             * lun is iSCSI Target Lun number.
              */
             lun: number;
             /**
-             * iSCSI Target Portal List. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+             * portals is the iSCSI Target Portal List. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
             portals: string[];
             /**
-             * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
+             * readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
              */
             readOnly: boolean;
             /**
-             * CHAP Secret for iSCSI target and initiator authentication
+             * secretRef is the CHAP Secret for iSCSI target and initiator authentication
              */
             secretRef: outputs.core.v1.SecretReference;
             /**
-             * iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+             * targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
             targetPortal: string;
         }
@@ -7973,47 +7973,47 @@ export namespace core {
          */
         export interface ISCSIVolumeSource {
             /**
-             * whether support iSCSI Discovery CHAP authentication
+             * chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication
              */
             chapAuthDiscovery: boolean;
             /**
-             * whether support iSCSI Session CHAP authentication
+             * chapAuthSession defines whether support iSCSI Session CHAP authentication
              */
             chapAuthSession: boolean;
             /**
-             * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
+             * fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
              */
             fsType: string;
             /**
-             * Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
+             * initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
              */
             initiatorName: string;
             /**
-             * Target iSCSI Qualified Name.
+             * iqn is the target iSCSI Qualified Name.
              */
             iqn: string;
             /**
-             * iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+             * iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
              */
             iscsiInterface: string;
             /**
-             * iSCSI Target Lun number.
+             * lun represents iSCSI Target Lun number.
              */
             lun: number;
             /**
-             * iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+             * portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
             portals: string[];
             /**
-             * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
+             * readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
              */
             readOnly: boolean;
             /**
-             * CHAP Secret for iSCSI target and initiator authentication
+             * secretRef is the CHAP Secret for iSCSI target and initiator authentication
              */
             secretRef: outputs.core.v1.LocalObjectReference;
             /**
-             * iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
+             * targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
              */
             targetPortal: string;
         }
@@ -8023,15 +8023,15 @@ export namespace core {
          */
         export interface KeyToPath {
             /**
-             * The key to project.
+             * key is the key to project.
              */
             key: string;
             /**
-             * Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+             * mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
             mode: number;
             /**
-             * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+             * path is the relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
              */
             path: string;
         }
@@ -8178,11 +8178,11 @@ export namespace core {
          */
         export interface LocalVolumeSource {
             /**
-             * Filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default value is to auto-select a filesystem if unspecified.
+             * fsType is the filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default value is to auto-select a filesystem if unspecified.
              */
             fsType: string;
             /**
-             * The full path to the volume on the node. It can be either a directory or block device (disk, partition, ...).
+             * path of the full path to the volume on the node. It can be either a directory or block device (disk, partition, ...).
              */
             path: string;
         }
@@ -8192,15 +8192,15 @@ export namespace core {
          */
         export interface NFSVolumeSource {
             /**
-             * Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+             * path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
             path: string;
             /**
-             * ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+             * readOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
             readOnly: boolean;
             /**
-             * Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+             * server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
             server: string;
         }
@@ -8478,7 +8478,7 @@ export namespace core {
          */
         export interface NodeSpec {
             /**
-             * Deprecated. If specified, the source of the node's configuration. The DynamicKubeletConfig feature gate must be enabled for the Kubelet to use this field. This field is deprecated as of 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration
+             * Deprecated: Previously used to specify the source of the node's configuration for the DynamicKubeletConfig feature. This feature is removed from Kubelets as of 1.24 and will be fully removed in 1.26.
              */
             configSource: outputs.core.v1.NodeConfigSource;
             /**
@@ -8673,11 +8673,11 @@ export namespace core {
              */
             metadata: outputs.meta.v1.ObjectMeta;
             /**
-             * Spec defines a specification of a persistent volume owned by the cluster. Provisioned by an administrator. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
+             * spec defines a specification of a persistent volume owned by the cluster. Provisioned by an administrator. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
              */
             spec: outputs.core.v1.PersistentVolumeSpec;
             /**
-             * Status represents the current information/status for the persistent volume. Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
+             * status represents the current information/status for the persistent volume. Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
              */
             status: outputs.core.v1.PersistentVolumeStatus;
         }
@@ -8699,11 +8699,11 @@ export namespace core {
              */
             metadata: outputs.meta.v1.ObjectMeta;
             /**
-             * Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+             * spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
              */
             spec: outputs.core.v1.PersistentVolumeClaimSpec;
             /**
-             * Status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+             * status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
              */
             status: outputs.core.v1.PersistentVolumeClaimStatus;
         }
@@ -8713,19 +8713,19 @@ export namespace core {
          */
         export interface PersistentVolumeClaimCondition {
             /**
-             * Last time we probed the condition.
+             * lastProbeTime is the time we probed the condition.
              */
             lastProbeTime: string;
             /**
-             * Last time the condition transitioned from one status to another.
+             * lastTransitionTime is the time the condition transitioned from one status to another.
              */
             lastTransitionTime: string;
             /**
-             * Human-readable message indicating details about last transition.
+             * message is the human-readable message indicating details about last transition.
              */
             message: string;
             /**
-             * Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
+             * reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
              */
             reason: string;
             status: string;
@@ -8745,15 +8745,15 @@ export namespace core {
          */
         export interface PersistentVolumeClaimSpec {
             /**
-             * AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+             * accessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
              */
             accessModes: string[];
             /**
-             * This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.
+             * dataSource field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field.
              */
             dataSource: outputs.core.v1.TypedLocalObjectReference;
             /**
-             * Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef
+             * dataSourceRef specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef
              *   allows any non-core object, as well as PersistentVolumeClaim objects.
              * * While DataSource ignores disallowed values (dropping them), DataSourceRef
              *   preserves all values, and generates an error if a disallowed value is
@@ -8762,15 +8762,15 @@ export namespace core {
              */
             dataSourceRef: outputs.core.v1.TypedLocalObjectReference;
             /**
-             * Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
+             * resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
              */
             resources: outputs.core.v1.ResourceRequirements;
             /**
-             * A label query over volumes to consider for binding.
+             * selector is a label query over volumes to consider for binding.
              */
             selector: outputs.meta.v1.LabelSelector;
             /**
-             * Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
+             * storageClassName is the name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
              */
             storageClassName: string;
             /**
@@ -8778,7 +8778,7 @@ export namespace core {
              */
             volumeMode: string;
             /**
-             * VolumeName is the binding reference to the PersistentVolume backing this claim.
+             * volumeName is the binding reference to the PersistentVolume backing this claim.
              */
             volumeName: string;
         }
@@ -8788,23 +8788,23 @@ export namespace core {
          */
         export interface PersistentVolumeClaimStatus {
             /**
-             * AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
+             * accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
              */
             accessModes: string[];
             /**
-             * The storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+             * allocatedResources is the storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
              */
             allocatedResources: {[key: string]: string};
             /**
-             * Represents the actual resources of the underlying volume.
+             * capacity represents the actual resources of the underlying volume.
              */
             capacity: {[key: string]: string};
             /**
-             * Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.
+             * conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.
              */
             conditions: outputs.core.v1.PersistentVolumeClaimCondition[];
             /**
-             * Phase represents the current phase of PersistentVolumeClaim.
+             * phase represents the current phase of PersistentVolumeClaim.
              *
              * Possible enum values:
              *  - `"Bound"` used for PersistentVolumeClaims that are bound
@@ -8813,7 +8813,7 @@ export namespace core {
              */
             phase: string;
             /**
-             * ResizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
+             * resizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature.
              */
             resizeStatus: string;
         }
@@ -8837,11 +8837,11 @@ export namespace core {
          */
         export interface PersistentVolumeClaimVolumeSource {
             /**
-             * ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+             * claimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
              */
             claimName: string;
             /**
-             * Will force the ReadOnly setting in VolumeMounts. Default false.
+             * readOnly Will force the ReadOnly setting in VolumeMounts. Default false.
              */
             readOnly: boolean;
         }
@@ -8851,87 +8851,87 @@ export namespace core {
          */
         export interface PersistentVolumeSpec {
             /**
-             * AccessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
+             * accessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
              */
             accessModes: string[];
             /**
-             * AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+             * awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
             awsElasticBlockStore: outputs.core.v1.AWSElasticBlockStoreVolumeSource;
             /**
-             * AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
+             * azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
              */
             azureDisk: outputs.core.v1.AzureDiskVolumeSource;
             /**
-             * AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
+             * azureFile represents an Azure File Service mount on the host and bind mount to the pod.
              */
             azureFile: outputs.core.v1.AzureFilePersistentVolumeSource;
             /**
-             * A description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
+             * capacity is the description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
              */
             capacity: {[key: string]: string};
             /**
-             * CephFS represents a Ceph FS mount on the host that shares a pod's lifetime
+             * cephFS represents a Ceph FS mount on the host that shares a pod's lifetime
              */
             cephfs: outputs.core.v1.CephFSPersistentVolumeSource;
             /**
-             * Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             cinder: outputs.core.v1.CinderPersistentVolumeSource;
             /**
-             * ClaimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
+             * claimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
              */
             claimRef: outputs.core.v1.ObjectReference;
             /**
-             * CSI represents storage that is handled by an external CSI driver (Beta feature).
+             * csi represents storage that is handled by an external CSI driver (Beta feature).
              */
             csi: outputs.core.v1.CSIPersistentVolumeSource;
             /**
-             * FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
+             * fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
              */
             fc: outputs.core.v1.FCVolumeSource;
             /**
-             * FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
+             * flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
              */
             flexVolume: outputs.core.v1.FlexPersistentVolumeSource;
             /**
-             * Flocker represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running
+             * flocker represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running
              */
             flocker: outputs.core.v1.FlockerVolumeSource;
             /**
-             * GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+             * gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
             gcePersistentDisk: outputs.core.v1.GCEPersistentDiskVolumeSource;
             /**
-             * Glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md
+             * glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md
              */
             glusterfs: outputs.core.v1.GlusterfsPersistentVolumeSource;
             /**
-             * HostPath represents a directory on the host. Provisioned by a developer or tester. This is useful for single-node development and testing only! On-host storage is not supported in any way and WILL NOT WORK in a multi-node cluster. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+             * hostPath represents a directory on the host. Provisioned by a developer or tester. This is useful for single-node development and testing only! On-host storage is not supported in any way and WILL NOT WORK in a multi-node cluster. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
              */
             hostPath: outputs.core.v1.HostPathVolumeSource;
             /**
-             * ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin.
+             * iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin.
              */
             iscsi: outputs.core.v1.ISCSIPersistentVolumeSource;
             /**
-             * Local represents directly-attached storage with node affinity
+             * local represents directly-attached storage with node affinity
              */
             local: outputs.core.v1.LocalVolumeSource;
             /**
-             * A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
+             * mountOptions is the list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
              */
             mountOptions: string[];
             /**
-             * NFS represents an NFS mount on the host. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+             * nfs represents an NFS mount on the host. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
             nfs: outputs.core.v1.NFSVolumeSource;
             /**
-             * NodeAffinity defines constraints that limit what nodes this volume can be accessed from. This field influences the scheduling of pods that use this volume.
+             * nodeAffinity defines constraints that limit what nodes this volume can be accessed from. This field influences the scheduling of pods that use this volume.
              */
             nodeAffinity: outputs.core.v1.VolumeNodeAffinity;
             /**
-             * What happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
+             * persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
              *
              * Possible enum values:
              *  - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion.
@@ -8940,31 +8940,31 @@ export namespace core {
              */
             persistentVolumeReclaimPolicy: string;
             /**
-             * PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
+             * photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
              */
             photonPersistentDisk: outputs.core.v1.PhotonPersistentDiskVolumeSource;
             /**
-             * PortworxVolume represents a portworx volume attached and mounted on kubelets host machine
+             * portworxVolume represents a portworx volume attached and mounted on kubelets host machine
              */
             portworxVolume: outputs.core.v1.PortworxVolumeSource;
             /**
-             * Quobyte represents a Quobyte mount on the host that shares a pod's lifetime
+             * quobyte represents a Quobyte mount on the host that shares a pod's lifetime
              */
             quobyte: outputs.core.v1.QuobyteVolumeSource;
             /**
-             * RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
+             * rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
              */
             rbd: outputs.core.v1.RBDPersistentVolumeSource;
             /**
-             * ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
+             * scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
              */
             scaleIO: outputs.core.v1.ScaleIOPersistentVolumeSource;
             /**
-             * Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.
+             * storageClassName is the name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.
              */
             storageClassName: string;
             /**
-             * StorageOS represents a StorageOS volume that is attached to the kubelet's host machine and mounted into the pod More info: https://examples.k8s.io/volumes/storageos/README.md
+             * storageOS represents a StorageOS volume that is attached to the kubelet's host machine and mounted into the pod More info: https://examples.k8s.io/volumes/storageos/README.md
              */
             storageos: outputs.core.v1.StorageOSPersistentVolumeSource;
             /**
@@ -8972,7 +8972,7 @@ export namespace core {
              */
             volumeMode: string;
             /**
-             * VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
+             * vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
              */
             vsphereVolume: outputs.core.v1.VsphereVirtualDiskVolumeSource;
         }
@@ -8982,11 +8982,11 @@ export namespace core {
          */
         export interface PersistentVolumeStatus {
             /**
-             * A human-readable message indicating details about why the volume is in this state.
+             * message is a human-readable message indicating details about why the volume is in this state.
              */
             message: string;
             /**
-             * Phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase
+             * phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase
              *
              * Possible enum values:
              *  - `"Available"` used for PersistentVolumes that are not yet bound Available volumes are held by the binder and matched to PersistentVolumeClaims
@@ -8997,7 +8997,7 @@ export namespace core {
              */
             phase: string;
             /**
-             * Reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI.
+             * reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI.
              */
             reason: string;
         }
@@ -9007,11 +9007,11 @@ export namespace core {
          */
         export interface PhotonPersistentDiskVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
             fsType: string;
             /**
-             * ID that identifies Photon Controller persistent disk
+             * pdID is the ID that identifies Photon Controller persistent disk
              */
             pdID: string;
         }
@@ -9350,7 +9350,7 @@ export namespace core {
              */
             overhead: {[key: string]: string};
             /**
-             * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
+             * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
              */
             preemptionPolicy: string;
             /**
@@ -9433,7 +9433,7 @@ export namespace core {
              */
             conditions: outputs.core.v1.PodCondition[];
             /**
-             * The list has one entry per container in the manifest. Each entry is currently the output of `docker inspect`. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
+             * The list has one entry per container in the manifest. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
              */
             containerStatuses: outputs.core.v1.ContainerStatus[];
             /**
@@ -9562,15 +9562,15 @@ export namespace core {
          */
         export interface PortworxVolumeSource {
             /**
-             * FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified.
+             * fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified.
              */
             fsType: string;
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * VolumeID uniquely identifies a Portworx volume
+             * volumeID uniquely identifies a Portworx volume
              */
             volumeID: string;
         }
@@ -9640,11 +9640,11 @@ export namespace core {
          */
         export interface ProjectedVolumeSource {
             /**
-             * Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+             * defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
             defaultMode: number;
             /**
-             * list of volume projections
+             * sources is the list of volume projections
              */
             sources: outputs.core.v1.VolumeProjection[];
         }
@@ -9654,27 +9654,27 @@ export namespace core {
          */
         export interface QuobyteVolumeSource {
             /**
-             * Group to map volume access to Default is no group
+             * group to map volume access to Default is no group
              */
             group: string;
             /**
-             * ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
+             * readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
              */
             readOnly: boolean;
             /**
-             * Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
+             * registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
              */
             registry: string;
             /**
-             * Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
+             * tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
              */
             tenant: string;
             /**
-             * User to map volume access to Defaults to serivceaccount user
+             * user to map volume access to Defaults to serivceaccount user
              */
             user: string;
             /**
-             * Volume is a string that references an already created Quobyte volume by name.
+             * volume is a string that references an already created Quobyte volume by name.
              */
             volume: string;
         }
@@ -9684,35 +9684,35 @@ export namespace core {
          */
         export interface RBDPersistentVolumeSource {
             /**
-             * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
+             * fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
              */
             fsType: string;
             /**
-             * The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             image: string;
             /**
-             * Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             keyring: string;
             /**
-             * A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             monitors: string[];
             /**
-             * The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             pool: string;
             /**
-             * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             readOnly: boolean;
             /**
-             * SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             secretRef: outputs.core.v1.SecretReference;
             /**
-             * The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             user: string;
         }
@@ -9722,35 +9722,35 @@ export namespace core {
          */
         export interface RBDVolumeSource {
             /**
-             * Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
+             * fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
              */
             fsType: string;
             /**
-             * The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             image: string;
             /**
-             * Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             keyring: string;
             /**
-             * A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             monitors: string[];
             /**
-             * The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             pool: string;
             /**
-             * ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             readOnly: boolean;
             /**
-             * SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             secretRef: outputs.core.v1.LocalObjectReference;
             /**
-             * The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
+             * user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
              */
             user: string;
         }
@@ -9976,43 +9976,43 @@ export namespace core {
          */
         export interface ScaleIOPersistentVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs"
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs"
              */
             fsType: string;
             /**
-             * The host address of the ScaleIO API Gateway.
+             * gateway is the host address of the ScaleIO API Gateway.
              */
             gateway: string;
             /**
-             * The name of the ScaleIO Protection Domain for the configured storage.
+             * protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.
              */
             protectionDomain: string;
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
+             * secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
              */
             secretRef: outputs.core.v1.SecretReference;
             /**
-             * Flag to enable/disable SSL communication with Gateway, default false
+             * sslEnabled is the flag to enable/disable SSL communication with Gateway, default false
              */
             sslEnabled: boolean;
             /**
-             * Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
+             * storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
              */
             storageMode: string;
             /**
-             * The ScaleIO Storage Pool associated with the protection domain.
+             * storagePool is the ScaleIO Storage Pool associated with the protection domain.
              */
             storagePool: string;
             /**
-             * The name of the storage system as configured in ScaleIO.
+             * system is the name of the storage system as configured in ScaleIO.
              */
             system: string;
             /**
-             * The name of a volume already created in the ScaleIO system that is associated with this volume source.
+             * volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
              */
             volumeName: string;
         }
@@ -10022,43 +10022,43 @@ export namespace core {
          */
         export interface ScaleIOVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs".
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs".
              */
             fsType: string;
             /**
-             * The host address of the ScaleIO API Gateway.
+             * gateway is the host address of the ScaleIO API Gateway.
              */
             gateway: string;
             /**
-             * The name of the ScaleIO Protection Domain for the configured storage.
+             * protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.
              */
             protectionDomain: string;
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
+             * secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
              */
             secretRef: outputs.core.v1.LocalObjectReference;
             /**
-             * Flag to enable/disable SSL communication with Gateway, default false
+             * sslEnabled Flag enable/disable SSL communication with Gateway, default false
              */
             sslEnabled: boolean;
             /**
-             * Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
+             * storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
              */
             storageMode: string;
             /**
-             * The ScaleIO Storage Pool associated with the protection domain.
+             * storagePool is the ScaleIO Storage Pool associated with the protection domain.
              */
             storagePool: string;
             /**
-             * The name of the storage system as configured in ScaleIO.
+             * system is the name of the storage system as configured in ScaleIO.
              */
             system: string;
             /**
-             * The name of a volume already created in the ScaleIO system that is associated with this volume source.
+             * volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.
              */
             volumeName: string;
         }
@@ -10211,7 +10211,7 @@ export namespace core {
          */
         export interface SecretProjection {
             /**
-             * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+             * items if unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
             items: outputs.core.v1.KeyToPath[];
             /**
@@ -10219,7 +10219,7 @@ export namespace core {
              */
             name: string;
             /**
-             * Specify whether the Secret or its key must be defined
+             * optional field specify whether the Secret or its key must be defined
              */
             optional: boolean;
         }
@@ -10229,11 +10229,11 @@ export namespace core {
          */
         export interface SecretReference {
             /**
-             * Name is unique within a namespace to reference a secret resource.
+             * name is unique within a namespace to reference a secret resource.
              */
             name: string;
             /**
-             * Namespace defines the space within which the secret name must be unique.
+             * namespace defines the space within which the secret name must be unique.
              */
             namespace: string;
         }
@@ -10245,19 +10245,19 @@ export namespace core {
          */
         export interface SecretVolumeSource {
             /**
-             * Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
+             * defaultMode is Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
              */
             defaultMode: number;
             /**
-             * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
+             * items If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
              */
             items: outputs.core.v1.KeyToPath[];
             /**
-             * Specify whether the Secret or its keys must be defined
+             * optional field specify whether the Secret or its keys must be defined
              */
             optional: boolean;
             /**
-             * Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+             * secretName is the name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
              */
             secretName: string;
         }
@@ -10398,15 +10398,15 @@ export namespace core {
          */
         export interface ServiceAccountTokenProjection {
             /**
-             * Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
+             * audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
              */
             audience: string;
             /**
-             * ExpirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
+             * expirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
              */
             expirationSeconds: number;
             /**
-             * Path is the path relative to the mount point of the file to project the token into.
+             * path is the path relative to the mount point of the file to project the token into.
              */
             path: string;
         }
@@ -10416,7 +10416,7 @@ export namespace core {
          */
         export interface ServicePort {
             /**
-             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
              */
             appProtocol: string;
             /**
@@ -10451,7 +10451,7 @@ export namespace core {
          */
         export interface ServiceSpec {
             /**
-             * allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer.  Default is "true". It may be set to "false" if the cluster load-balancer does not rely on NodePorts.  If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type. This field is beta-level and is only honored by servers that enable the ServiceLBNodePortControl feature.
+             * allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer.  Default is "true". It may be set to "false" if the cluster load-balancer does not rely on NodePorts.  If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.
              */
             allocateLoadBalancerNodePorts: boolean;
             /**
@@ -10507,7 +10507,7 @@ export namespace core {
              */
             loadBalancerClass: string;
             /**
-             * Only applies to Service Type: LoadBalancer LoadBalancer will get created with the IP specified in this field. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature.
+             * Only applies to Service Type: LoadBalancer. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature. Deprecated: This field was under-specified and its meaning varies across implementations, and it cannot support dual-stack. As of Kubernetes v1.24, users are encouraged to use implementation-specific annotations when available. This field may be removed in a future API version.
              */
             loadBalancerIP: string;
             /**
@@ -10583,23 +10583,23 @@ export namespace core {
          */
         export interface StorageOSPersistentVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
             fsType: string;
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
+             * secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
              */
             secretRef: outputs.core.v1.ObjectReference;
             /**
-             * VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
+             * volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
              */
             volumeName: string;
             /**
-             * VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+             * volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
              */
             volumeNamespace: string;
         }
@@ -10609,23 +10609,23 @@ export namespace core {
          */
         export interface StorageOSVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
+             * fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
             fsType: string;
             /**
-             * Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
+             * readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
              */
             readOnly: boolean;
             /**
-             * SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
+             * secretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
              */
             secretRef: outputs.core.v1.LocalObjectReference;
             /**
-             * VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
+             * volumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
              */
             volumeName: string;
             /**
-             * VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
+             * volumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
              */
             volumeNamespace: string;
         }
@@ -10796,43 +10796,43 @@ export namespace core {
          */
         export interface Volume {
             /**
-             * AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+             * awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
              */
             awsElasticBlockStore: outputs.core.v1.AWSElasticBlockStoreVolumeSource;
             /**
-             * AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
+             * azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
              */
             azureDisk: outputs.core.v1.AzureDiskVolumeSource;
             /**
-             * AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
+             * azureFile represents an Azure File Service mount on the host and bind mount to the pod.
              */
             azureFile: outputs.core.v1.AzureFileVolumeSource;
             /**
-             * CephFS represents a Ceph FS mount on the host that shares a pod's lifetime
+             * cephFS represents a Ceph FS mount on the host that shares a pod's lifetime
              */
             cephfs: outputs.core.v1.CephFSVolumeSource;
             /**
-             * Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
+             * cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
              */
             cinder: outputs.core.v1.CinderVolumeSource;
             /**
-             * ConfigMap represents a configMap that should populate this volume
+             * configMap represents a configMap that should populate this volume
              */
             configMap: outputs.core.v1.ConfigMapVolumeSource;
             /**
-             * CSI (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).
+             * csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).
              */
             csi: outputs.core.v1.CSIVolumeSource;
             /**
-             * DownwardAPI represents downward API about the pod that should populate this volume
+             * downwardAPI represents downward API about the pod that should populate this volume
              */
             downwardAPI: outputs.core.v1.DownwardAPIVolumeSource;
             /**
-             * EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+             * emptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
              */
             emptyDir: outputs.core.v1.EmptyDirVolumeSource;
             /**
-             * Ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.
+             * ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.
              *
              * Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity
              *    tracking are needed,
@@ -10849,83 +10849,83 @@ export namespace core {
              */
             ephemeral: outputs.core.v1.EphemeralVolumeSource;
             /**
-             * FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
+             * fc represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
              */
             fc: outputs.core.v1.FCVolumeSource;
             /**
-             * FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
+             * flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
              */
             flexVolume: outputs.core.v1.FlexVolumeSource;
             /**
-             * Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running
+             * flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running
              */
             flocker: outputs.core.v1.FlockerVolumeSource;
             /**
-             * GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+             * gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
              */
             gcePersistentDisk: outputs.core.v1.GCEPersistentDiskVolumeSource;
             /**
-             * GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.
+             * gitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.
              */
             gitRepo: outputs.core.v1.GitRepoVolumeSource;
             /**
-             * Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md
+             * glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md
              */
             glusterfs: outputs.core.v1.GlusterfsVolumeSource;
             /**
-             * HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+             * hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
              */
             hostPath: outputs.core.v1.HostPathVolumeSource;
             /**
-             * ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md
+             * iscsi represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md
              */
             iscsi: outputs.core.v1.ISCSIVolumeSource;
             /**
-             * Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+             * name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
              */
             name: string;
             /**
-             * NFS represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+             * nfs represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
              */
             nfs: outputs.core.v1.NFSVolumeSource;
             /**
-             * PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+             * persistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
              */
             persistentVolumeClaim: outputs.core.v1.PersistentVolumeClaimVolumeSource;
             /**
-             * PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
+             * photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
              */
             photonPersistentDisk: outputs.core.v1.PhotonPersistentDiskVolumeSource;
             /**
-             * PortworxVolume represents a portworx volume attached and mounted on kubelets host machine
+             * portworxVolume represents a portworx volume attached and mounted on kubelets host machine
              */
             portworxVolume: outputs.core.v1.PortworxVolumeSource;
             /**
-             * Items for all in one resources secrets, configmaps, and downward API
+             * projected items for all in one resources secrets, configmaps, and downward API
              */
             projected: outputs.core.v1.ProjectedVolumeSource;
             /**
-             * Quobyte represents a Quobyte mount on the host that shares a pod's lifetime
+             * quobyte represents a Quobyte mount on the host that shares a pod's lifetime
              */
             quobyte: outputs.core.v1.QuobyteVolumeSource;
             /**
-             * RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
+             * rbd represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
              */
             rbd: outputs.core.v1.RBDVolumeSource;
             /**
-             * ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
+             * scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
              */
             scaleIO: outputs.core.v1.ScaleIOVolumeSource;
             /**
-             * Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
+             * secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
              */
             secret: outputs.core.v1.SecretVolumeSource;
             /**
-             * StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.
+             * storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.
              */
             storageos: outputs.core.v1.StorageOSVolumeSource;
             /**
-             * VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
+             * vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
              */
             vsphereVolume: outputs.core.v1.VsphereVirtualDiskVolumeSource;
         }
@@ -10979,7 +10979,7 @@ export namespace core {
          */
         export interface VolumeNodeAffinity {
             /**
-             * Required specifies hard node constraints that must be met.
+             * required specifies hard node constraints that must be met.
              */
             required: outputs.core.v1.NodeSelector;
         }
@@ -10989,19 +10989,19 @@ export namespace core {
          */
         export interface VolumeProjection {
             /**
-             * information about the configMap data to project
+             * configMap information about the configMap data to project
              */
             configMap: outputs.core.v1.ConfigMapProjection;
             /**
-             * information about the downwardAPI data to project
+             * downwardAPI information about the downwardAPI data to project
              */
             downwardAPI: outputs.core.v1.DownwardAPIProjection;
             /**
-             * information about the secret data to project
+             * secret information about the secret data to project
              */
             secret: outputs.core.v1.SecretProjection;
             /**
-             * information about the serviceAccountToken data to project
+             * serviceAccountToken is information about the serviceAccountToken data to project
              */
             serviceAccountToken: outputs.core.v1.ServiceAccountTokenProjection;
         }
@@ -11011,19 +11011,19 @@ export namespace core {
          */
         export interface VsphereVirtualDiskVolumeSource {
             /**
-             * Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
+             * fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
              */
             fsType: string;
             /**
-             * Storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
+             * storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
              */
             storagePolicyID: string;
             /**
-             * Storage Policy Based Management (SPBM) profile name.
+             * storagePolicyName is the storage Policy Based Management (SPBM) profile name.
              */
             storagePolicyName: string;
             /**
-             * Path that identifies vSphere volume vmdk
+             * volumePath is the path that identifies vSphere volume vmdk
              */
             volumePath: string;
         }
@@ -11074,7 +11074,7 @@ export namespace discovery {
          */
         export interface Endpoint {
             /**
-             * addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100.
+             * addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100. These are all assumed to be fungible and clients may choose to only use the first element. Refer to: https://issue.k8s.io/106267
              */
             addresses: string[];
             /**
@@ -11140,7 +11140,7 @@ export namespace discovery {
          */
         export interface EndpointPort {
             /**
-             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
              */
             appProtocol: string;
             /**
@@ -11210,7 +11210,7 @@ export namespace discovery {
          */
         export interface Endpoint {
             /**
-             * addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100.
+             * addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100. These are all assumed to be fungible and clients may choose to only use the first element. Refer to: https://issue.k8s.io/106267
              */
             addresses: string[];
             /**
@@ -11279,7 +11279,7 @@ export namespace discovery {
          */
         export interface EndpointPort {
             /**
-             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
+             * The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
              */
             appProtocol: string;
             /**
@@ -13742,9 +13742,7 @@ export namespace meta {
              */
             resourceVersion: string;
             /**
-             * selfLink is a URL representing this object. Populated by the system. Read-only.
-             *
-             * DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+             * selfLink is DEPRECATED read-only field that is no longer populated by the system.
              */
             selfLink: string;
         }
@@ -13778,7 +13776,7 @@ export namespace meta {
              */
             subresource: string;
             /**
-             * Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
+             * Time is the timestamp of when the ManagedFields entry was added. The timestamp will also be updated if a field is added, the manager changes any of the owned fields value or removes a field. The timestamp does not update when a field is removed from the entry because another manager took it over.
              */
             time: string;
         }
@@ -13856,9 +13854,7 @@ export namespace meta {
              */
             resourceVersion: string;
             /**
-             * SelfLink is a URL representing this object. Populated by the system. Read-only.
-             *
-             * DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
+             * selfLink is DEPRECATED read-only field that is no longer populated by the system.
              */
             selfLink: string;
             /**
@@ -13878,7 +13874,7 @@ export namespace meta {
              */
             apiVersion: string;
             /**
-             * If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
+             * If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion for how the garbage collector interacts with this field and enforces the foreground deletion. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
              */
             blockOwnerDeletion: boolean;
             /**
@@ -15739,7 +15735,7 @@ export namespace scheduling {
              */
             metadata: outputs.meta.v1.ObjectMeta;
             /**
-             * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is beta-level, gated by the NonPreemptingPriority feature-gate.
+             * PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
              */
             preemptionPolicy: string;
             /**
