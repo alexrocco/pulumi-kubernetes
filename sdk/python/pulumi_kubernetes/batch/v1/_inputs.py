@@ -307,11 +307,6 @@ class JobConditionArgs:
         JobCondition describes current state of a job.
         :param pulumi.Input[str] status: Status of the condition, one of True, False, Unknown.
         :param pulumi.Input[str] type: Type of job condition, Complete or Failed.
-               
-               Possible enum values:
-                - `"Complete"` means the job has completed its execution.
-                - `"Failed"` means the job has failed its execution.
-                - `"Suspended"` means the job has been suspended.
         :param pulumi.Input[str] last_probe_time: Last time the condition was checked.
         :param pulumi.Input[str] last_transition_time: Last time the condition transit from one status to another.
         :param pulumi.Input[str] message: Human readable message indicating details about last transition.
@@ -345,11 +340,6 @@ class JobConditionArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Type of job condition, Complete or Failed.
-
-        Possible enum values:
-         - `"Complete"` means the job has completed its execution.
-         - `"Failed"` means the job has failed its execution.
-         - `"Suspended"` means the job has been suspended.
         """
         return pulumi.get(self, "type")
 
@@ -436,8 +426,6 @@ class JobSpecArgs:
         :param pulumi.Input[int] parallelism: Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] selector: A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         :param pulumi.Input[bool] suspend: Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-               
-               This field is beta-level, gated by SuspendJob feature flag (enabled by default).
         :param pulumi.Input[int] ttl_seconds_after_finished: ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes.
         """
         pulumi.set(__self__, "template", template)
@@ -567,8 +555,6 @@ class JobSpecArgs:
     def suspend(self) -> Optional[pulumi.Input[bool]]:
         """
         Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-
-        This field is beta-level, gated by SuspendJob feature flag (enabled by default).
         """
         return pulumi.get(self, "suspend")
 

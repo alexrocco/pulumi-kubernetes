@@ -891,11 +891,6 @@ type JobCondition struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status string `pulumi:"status"`
 	// Type of job condition, Complete or Failed.
-	//
-	// Possible enum values:
-	//  - `"Complete"` means the job has completed its execution.
-	//  - `"Failed"` means the job has failed its execution.
-	//  - `"Suspended"` means the job has been suspended.
 	Type string `pulumi:"type"`
 }
 
@@ -923,11 +918,6 @@ type JobConditionArgs struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status pulumi.StringInput `pulumi:"status"`
 	// Type of job condition, Complete or Failed.
-	//
-	// Possible enum values:
-	//  - `"Complete"` means the job has completed its execution.
-	//  - `"Failed"` means the job has failed its execution.
-	//  - `"Suspended"` means the job has been suspended.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -1009,11 +999,6 @@ func (o JobConditionOutput) Status() pulumi.StringOutput {
 }
 
 // Type of job condition, Complete or Failed.
-//
-// Possible enum values:
-//  - `"Complete"` means the job has completed its execution.
-//  - `"Failed"` means the job has failed its execution.
-//  - `"Suspended"` means the job has been suspended.
 func (o JobConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v JobCondition) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -1143,8 +1128,6 @@ type JobSpec struct {
 	// A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 	Selector *metav1.LabelSelector `pulumi:"selector"`
 	// Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-	//
-	// This field is beta-level, gated by SuspendJob feature flag (enabled by default).
 	Suspend *bool `pulumi:"suspend"`
 	// Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
 	Template corev1.PodTemplateSpec `pulumi:"template"`
@@ -1186,8 +1169,6 @@ type JobSpecArgs struct {
 	// A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
 	Selector metav1.LabelSelectorPtrInput `pulumi:"selector"`
 	// Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-	//
-	// This field is beta-level, gated by SuspendJob feature flag (enabled by default).
 	Suspend pulumi.BoolPtrInput `pulumi:"suspend"`
 	// Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
 	Template corev1.PodTemplateSpecInput `pulumi:"template"`
@@ -1315,8 +1296,6 @@ func (o JobSpecOutput) Selector() metav1.LabelSelectorPtrOutput {
 }
 
 // Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-//
-// This field is beta-level, gated by SuspendJob feature flag (enabled by default).
 func (o JobSpecOutput) Suspend() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v JobSpec) *bool { return v.Suspend }).(pulumi.BoolPtrOutput)
 }
@@ -1432,8 +1411,6 @@ func (o JobSpecPtrOutput) Selector() metav1.LabelSelectorPtrOutput {
 }
 
 // Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-//
-// This field is beta-level, gated by SuspendJob feature flag (enabled by default).
 func (o JobSpecPtrOutput) Suspend() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *JobSpec) *bool {
 		if v == nil {

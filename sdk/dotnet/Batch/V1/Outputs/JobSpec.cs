@@ -52,8 +52,6 @@ namespace Pulumi.Kubernetes.Types.Outputs.Batch.V1
         public readonly Pulumi.Kubernetes.Types.Outputs.Meta.V1.LabelSelector Selector;
         /// <summary>
         /// Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-        /// 
-        /// This field is beta-level, gated by SuspendJob feature flag (enabled by default).
         /// </summary>
         public readonly bool Suspend;
         /// <summary>

@@ -445,8 +445,6 @@ type CertificateSigningRequestSpec struct {
 	//   3. Signer whose configured minimum is longer than the requested duration
 	//
 	// The minimum valid value for expirationSeconds is 600, i.e. 10 minutes.
-	//
-	// As of v1.22, this field is beta and is controlled via the CSRDuration feature gate.
 	ExpirationSeconds *int `pulumi:"expirationSeconds"`
 	// extra contains extra attributes of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
 	Extra map[string][]string `pulumi:"extra"`
@@ -522,8 +520,6 @@ type CertificateSigningRequestSpecArgs struct {
 	//   3. Signer whose configured minimum is longer than the requested duration
 	//
 	// The minimum valid value for expirationSeconds is 600, i.e. 10 minutes.
-	//
-	// As of v1.22, this field is beta and is controlled via the CSRDuration feature gate.
 	ExpirationSeconds pulumi.IntPtrInput `pulumi:"expirationSeconds"`
 	// extra contains extra attributes of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
 	Extra pulumi.StringArrayMapInput `pulumi:"extra"`
@@ -613,8 +609,6 @@ func (o CertificateSigningRequestSpecOutput) ToCertificateSigningRequestSpecOutp
 //   3. Signer whose configured minimum is longer than the requested duration
 //
 // The minimum valid value for expirationSeconds is 600, i.e. 10 minutes.
-//
-// As of v1.22, this field is beta and is controlled via the CSRDuration feature gate.
 func (o CertificateSigningRequestSpecOutput) ExpirationSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v CertificateSigningRequestSpec) *int { return v.ExpirationSeconds }).(pulumi.IntPtrOutput)
 }

@@ -5407,11 +5407,6 @@ class LimitRangeItemArgs:
         """
         LimitRangeItem defines a min/max usage limit for any resource that matches on kind.
         :param pulumi.Input[str] type: Type of resource that this limit applies to.
-               
-               Possible enum values:
-                - `"Container"` Limit that applies to all containers in a namespace
-                - `"PersistentVolumeClaim"` Limit that applies to all persistent volume claims in a namespace
-                - `"Pod"` Limit that applies to all pods in a namespace
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default: Default resource requirement limit value by resource name if resource limit is omitted.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_request: DefaultRequest is the default resource requirement request value by resource name if resource request is omitted.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] max: Max usage constraints on this kind by resource name.
@@ -5435,11 +5430,6 @@ class LimitRangeItemArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Type of resource that this limit applies to.
-
-        Possible enum values:
-         - `"Container"` Limit that applies to all containers in a namespace
-         - `"PersistentVolumeClaim"` Limit that applies to all persistent volume claims in a namespace
-         - `"Pod"` Limit that applies to all pods in a namespace
         """
         return pulumi.get(self, "type")
 
@@ -5812,13 +5802,6 @@ class NamespaceConditionArgs:
         NamespaceCondition contains details about state of namespace.
         :param pulumi.Input[str] status: Status of the condition, one of True, False, Unknown.
         :param pulumi.Input[str] type: Type of namespace controller condition.
-               
-               Possible enum values:
-                - `"NamespaceContentRemaining"` contains information about resources remaining in a namespace.
-                - `"NamespaceDeletionContentFailure"` contains information about namespace deleter errors during deletion of resources.
-                - `"NamespaceDeletionDiscoveryFailure"` contains information about namespace deleter errors during resource discovery.
-                - `"NamespaceDeletionGroupVersionParsingFailure"` contains information about namespace deleter errors parsing GV for legacy types.
-                - `"NamespaceFinalizersRemaining"` contains information about which finalizers are on resources remaining in a namespace.
         """
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
@@ -5846,13 +5829,6 @@ class NamespaceConditionArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Type of namespace controller condition.
-
-        Possible enum values:
-         - `"NamespaceContentRemaining"` contains information about resources remaining in a namespace.
-         - `"NamespaceDeletionContentFailure"` contains information about namespace deleter errors during deletion of resources.
-         - `"NamespaceDeletionDiscoveryFailure"` contains information about namespace deleter errors during resource discovery.
-         - `"NamespaceDeletionGroupVersionParsingFailure"` contains information about namespace deleter errors parsing GV for legacy types.
-         - `"NamespaceFinalizersRemaining"` contains information about which finalizers are on resources remaining in a namespace.
         """
         return pulumi.get(self, "type")
 
@@ -6057,13 +6033,6 @@ class NodeAddressArgs:
         NodeAddress contains information for the node's address.
         :param pulumi.Input[str] address: The node address.
         :param pulumi.Input[str] type: Node address type, one of Hostname, ExternalIP or InternalIP.
-               
-               Possible enum values:
-                - `"ExternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeExternalIP. The IP it resolves to may or may not be a listed NodeExternalIP address.
-                - `"ExternalIP"` identifies an IP address which is, in some way, intended to be more usable from outside the cluster then an internal IP, though no specific semantics are defined. It may be a globally routable IP, though it is not required to be. External IPs may be assigned directly to an interface on the node, like a NodeInternalIP, or alternatively, packets sent to the external IP may be NAT'ed to an internal node IP rather than being delivered directly (making the IP less efficient for node-to-node traffic than a NodeInternalIP).
-                - `"Hostname"` identifies a name of the node. Although every node can be assumed to have a NodeAddress of this type, its exact syntax and semantics are not defined, and are not consistent between different clusters.
-                - `"InternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeInternalIP. The IP it resolves to may or may not be a listed NodeInternalIP address.
-                - `"InternalIP"` identifies an IP address which is assigned to one of the node's network interfaces. Every node should have at least one address of this type. An internal IP is normally expected to be reachable from every other node, but may not be visible to hosts outside the cluster. By default it is assumed that kube-apiserver can reach node internal IPs, though it is possible to configure clusters where this is not the case. NodeInternalIP is the default type of node IP, and does not necessarily imply that the IP is ONLY reachable internally. If a node has multiple internal IPs, no specific semantics are assigned to the additional IPs.
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "type", type)
@@ -6085,13 +6054,6 @@ class NodeAddressArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Node address type, one of Hostname, ExternalIP or InternalIP.
-
-        Possible enum values:
-         - `"ExternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeExternalIP. The IP it resolves to may or may not be a listed NodeExternalIP address.
-         - `"ExternalIP"` identifies an IP address which is, in some way, intended to be more usable from outside the cluster then an internal IP, though no specific semantics are defined. It may be a globally routable IP, though it is not required to be. External IPs may be assigned directly to an interface on the node, like a NodeInternalIP, or alternatively, packets sent to the external IP may be NAT'ed to an internal node IP rather than being delivered directly (making the IP less efficient for node-to-node traffic than a NodeInternalIP).
-         - `"Hostname"` identifies a name of the node. Although every node can be assumed to have a NodeAddress of this type, its exact syntax and semantics are not defined, and are not consistent between different clusters.
-         - `"InternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeInternalIP. The IP it resolves to may or may not be a listed NodeInternalIP address.
-         - `"InternalIP"` identifies an IP address which is assigned to one of the node's network interfaces. Every node should have at least one address of this type. An internal IP is normally expected to be reachable from every other node, but may not be visible to hosts outside the cluster. By default it is assumed that kube-apiserver can reach node internal IPs, though it is possible to configure clusters where this is not the case. NodeInternalIP is the default type of node IP, and does not necessarily imply that the IP is ONLY reachable internally. If a node has multiple internal IPs, no specific semantics are assigned to the additional IPs.
         """
         return pulumi.get(self, "type")
 
@@ -6153,13 +6115,6 @@ class NodeConditionArgs:
         NodeCondition contains condition information for a node.
         :param pulumi.Input[str] status: Status of the condition, one of True, False, Unknown.
         :param pulumi.Input[str] type: Type of node condition.
-               
-               Possible enum values:
-                - `"DiskPressure"` means the kubelet is under pressure due to insufficient available disk.
-                - `"MemoryPressure"` means the kubelet is under pressure due to insufficient available memory.
-                - `"NetworkUnavailable"` means that network for the node is not correctly configured.
-                - `"PIDPressure"` means the kubelet is under pressure due to insufficient available PID.
-                - `"Ready"` means kubelet is healthy and ready to accept pods.
         :param pulumi.Input[str] last_heartbeat_time: Last time we got an update on a given condition.
         :param pulumi.Input[str] last_transition_time: Last time the condition transit from one status to another.
         :param pulumi.Input[str] message: Human readable message indicating details about last transition.
@@ -6193,13 +6148,6 @@ class NodeConditionArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Type of node condition.
-
-        Possible enum values:
-         - `"DiskPressure"` means the kubelet is under pressure due to insufficient available disk.
-         - `"MemoryPressure"` means the kubelet is under pressure due to insufficient available memory.
-         - `"NetworkUnavailable"` means that network for the node is not correctly configured.
-         - `"PIDPressure"` means the kubelet is under pressure due to insufficient available PID.
-         - `"Ready"` means kubelet is healthy and ready to accept pods.
         """
         return pulumi.get(self, "type")
 
@@ -7239,12 +7187,6 @@ class PersistentVolumeClaimConditionArgs:
                  reason: Optional[pulumi.Input[str]] = None):
         """
         PersistentVolumeClaimCondition contails details about state of pvc
-        :param pulumi.Input[str] type: 
-               
-               
-               Possible enum values:
-                - `"FileSystemResizePending"` - controller resize is finished and a file system resize is pending on node
-                - `"Resizing"` - a user trigger resize of pvc has been started
         :param pulumi.Input[str] last_probe_time: lastProbeTime is the time we probed the condition.
         :param pulumi.Input[str] last_transition_time: lastTransitionTime is the time the condition transitioned from one status to another.
         :param pulumi.Input[str] message: message is the human-readable message indicating details about last transition.
@@ -7273,14 +7215,6 @@ class PersistentVolumeClaimConditionArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
-        """
-
-
-
-        Possible enum values:
-         - `"FileSystemResizePending"` - controller resize is finished and a file system resize is pending on node
-         - `"Resizing"` - a user trigger resize of pvc has been started
-        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -8468,8 +8402,8 @@ class PodAffinityTermArgs:
         Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running
         :param pulumi.Input[str] topology_key: This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] label_selector: A label query over a set of resources, in this case pods.
-        :param pulumi.Input['_meta.v1.LabelSelectorArgs'] namespace_selector: A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] namespaces: namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace"
+        :param pulumi.Input['_meta.v1.LabelSelectorArgs'] namespace_selector: A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] namespaces: namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace".
         """
         pulumi.set(__self__, "topology_key", topology_key)
         if label_selector is not None:
@@ -8507,7 +8441,7 @@ class PodAffinityTermArgs:
     @pulumi.getter(name="namespaceSelector")
     def namespace_selector(self) -> Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]:
         """
-        A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+        A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces.
         """
         return pulumi.get(self, "namespace_selector")
 
@@ -8519,7 +8453,7 @@ class PodAffinityTermArgs:
     @pulumi.getter
     def namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace"
+        namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace".
         """
         return pulumi.get(self, "namespaces")
 
@@ -8621,12 +8555,6 @@ class PodConditionArgs:
         PodCondition contains details for the current condition of this pod.
         :param pulumi.Input[str] status: Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
         :param pulumi.Input[str] type: Type is the type of the condition. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
-               
-               Possible enum values:
-                - `"ContainersReady"` indicates whether all containers in the pod are ready.
-                - `"Initialized"` means that all init containers in the pod have started successfully.
-                - `"PodScheduled"` represents status of the scheduling process for this pod.
-                - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
         :param pulumi.Input[str] last_probe_time: Last time we probed the condition.
         :param pulumi.Input[str] last_transition_time: Last time the condition transitioned from one status to another.
         :param pulumi.Input[str] message: Human-readable message indicating details about last transition.
@@ -8660,12 +8588,6 @@ class PodConditionArgs:
     def type(self) -> pulumi.Input[str]:
         """
         Type is the type of the condition. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
-
-        Possible enum values:
-         - `"ContainersReady"` indicates whether all containers in the pod are ready.
-         - `"Initialized"` means that all init containers in the pod have started successfully.
-         - `"PodScheduled"` represents status of the scheduling process for this pod.
-         - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
         """
         return pulumi.get(self, "type")
 
@@ -8869,12 +8791,6 @@ class PodReadinessGateArgs:
         """
         PodReadinessGate contains the reference to a pod condition
         :param pulumi.Input[str] condition_type: ConditionType refers to a condition in the pod's condition list with matching type.
-               
-               Possible enum values:
-                - `"ContainersReady"` indicates whether all containers in the pod are ready.
-                - `"Initialized"` means that all init containers in the pod have started successfully.
-                - `"PodScheduled"` represents status of the scheduling process for this pod.
-                - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
         """
         pulumi.set(__self__, "condition_type", condition_type)
 
@@ -8883,12 +8799,6 @@ class PodReadinessGateArgs:
     def condition_type(self) -> pulumi.Input[str]:
         """
         ConditionType refers to a condition in the pod's condition list with matching type.
-
-        Possible enum values:
-         - `"ContainersReady"` indicates whether all containers in the pod are ready.
-         - `"Initialized"` means that all init containers in the pod have started successfully.
-         - `"PodScheduled"` represents status of the scheduling process for this pod.
-         - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
         """
         return pulumi.get(self, "condition_type")
 
@@ -9142,7 +9052,7 @@ class PodSpecArgs:
                If the OS field is set to linux, the following fields must be unset: -securityContext.windowsOptions
                
                If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup This is an alpha field and requires the IdentifyPodOS feature
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] overhead: Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] overhead: Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
         :param pulumi.Input[str] preemption_policy: PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
         :param pulumi.Input[int] priority: The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.
         :param pulumi.Input[str] priority_class_name: If specified, indicates the pod's priority. "system-node-critical" and "system-cluster-critical" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
@@ -9153,7 +9063,7 @@ class PodSpecArgs:
                 - `"Always"`
                 - `"Never"`
                 - `"OnFailure"`
-        :param pulumi.Input[str] runtime_class_name: RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.
+        :param pulumi.Input[str] runtime_class_name: RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
         :param pulumi.Input[str] scheduler_name: If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
         :param pulumi.Input['PodSecurityContextArgs'] security_context: SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.
         :param pulumi.Input[str] service_account: DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
@@ -9468,7 +9378,7 @@ class PodSpecArgs:
     @pulumi.getter
     def overhead(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+        Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
         """
         return pulumi.get(self, "overhead")
 
@@ -9545,7 +9455,7 @@ class PodSpecArgs:
     @pulumi.getter(name="runtimeClassName")
     def runtime_class_name(self) -> Optional[pulumi.Input[str]]:
         """
-        RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.
+        RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
         """
         return pulumi.get(self, "runtime_class_name")
 
@@ -11961,7 +11871,7 @@ class ScopedResourceSelectorRequirementArgs:
                
                Possible enum values:
                 - `"BestEffort"` Match all pod objects that have best effort quality of service
-                - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned. This is a beta feature enabled by the PodAffinityNamespaceSelector feature flag.
+                - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.
                 - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service
                 - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil
                 - `"PriorityClass"` Match all pod objects that have priority class mentioned
@@ -11999,7 +11909,7 @@ class ScopedResourceSelectorRequirementArgs:
 
         Possible enum values:
          - `"BestEffort"` Match all pod objects that have best effort quality of service
-         - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned. This is a beta feature enabled by the PodAffinityNamespaceSelector feature flag.
+         - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.
          - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service
          - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil
          - `"PriorityClass"` Match all pod objects that have priority class mentioned
@@ -12731,7 +12641,7 @@ class ServiceAccountArgs:
         :param pulumi.Input[Sequence[pulumi.Input['LocalObjectReferenceArgs']]] image_pull_secrets: ImagePullSecrets is a list of references to secrets in the same namespace to use for pulling any images in pods that reference this ServiceAccount. ImagePullSecrets are distinct from Secrets because Secrets can be mounted in the pod, but ImagePullSecrets are only accessed by the kubelet. More info: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-        :param pulumi.Input[Sequence[pulumi.Input['ObjectReferenceArgs']]] secrets: Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectReferenceArgs']]] secrets: Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret
         """
         if api_version is not None:
             pulumi.set(__self__, "api_version", 'v1')
@@ -12810,7 +12720,7 @@ class ServiceAccountArgs:
     @pulumi.getter
     def secrets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectReferenceArgs']]]]:
         """
-        Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
+        Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret
         """
         return pulumi.get(self, "secrets")
 
@@ -13996,11 +13906,12 @@ class TopologySpreadConstraintArgs:
                  max_skew: pulumi.Input[int],
                  topology_key: pulumi.Input[str],
                  when_unsatisfiable: pulumi.Input[str],
-                 label_selector: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']] = None):
+                 label_selector: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']] = None,
+                 min_domains: Optional[pulumi.Input[int]] = None):
         """
         TopologySpreadConstraint specifies how to spread matching pods among the given topology.
-        :param pulumi.Input[int] max_skew: MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
-        :param pulumi.Input[str] topology_key: TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+        :param pulumi.Input[int] max_skew: MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+        :param pulumi.Input[str] topology_key: TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes match the node selector. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It's a required field.
         :param pulumi.Input[str] when_unsatisfiable: WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,
                  but giving higher precedence to topologies that would help reduce the
                  skew.
@@ -14010,18 +13921,25 @@ class TopologySpreadConstraintArgs:
                 - `"DoNotSchedule"` instructs the scheduler not to schedule the pod when constraints are not satisfied.
                 - `"ScheduleAnyway"` instructs the scheduler to schedule the pod even if constraints are not satisfied.
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] label_selector: LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
+        :param pulumi.Input[int] min_domains: MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.
+               
+               For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+               
+               This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
         """
         pulumi.set(__self__, "max_skew", max_skew)
         pulumi.set(__self__, "topology_key", topology_key)
         pulumi.set(__self__, "when_unsatisfiable", when_unsatisfiable)
         if label_selector is not None:
             pulumi.set(__self__, "label_selector", label_selector)
+        if min_domains is not None:
+            pulumi.set(__self__, "min_domains", min_domains)
 
     @property
     @pulumi.getter(name="maxSkew")
     def max_skew(self) -> pulumi.Input[int]:
         """
-        MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+        MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
         """
         return pulumi.get(self, "max_skew")
 
@@ -14033,7 +13951,7 @@ class TopologySpreadConstraintArgs:
     @pulumi.getter(name="topologyKey")
     def topology_key(self) -> pulumi.Input[str]:
         """
-        TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+        TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes match the node selector. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It's a required field.
         """
         return pulumi.get(self, "topology_key")
 
@@ -14071,6 +13989,22 @@ class TopologySpreadConstraintArgs:
     @label_selector.setter
     def label_selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
         pulumi.set(self, "label_selector", value)
+
+    @property
+    @pulumi.getter(name="minDomains")
+    def min_domains(self) -> Optional[pulumi.Input[int]]:
+        """
+        MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.
+
+        For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+
+        This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
+        """
+        return pulumi.get(self, "min_domains")
+
+    @min_domains.setter
+    def min_domains(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_domains", value)
 
 
 @pulumi.input_type

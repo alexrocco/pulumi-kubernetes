@@ -5500,11 +5500,6 @@ export namespace batch {
             status: pulumi.Input<string>;
             /**
              * Type of job condition, Complete or Failed.
-             *
-             * Possible enum values:
-             *  - `"Complete"` means the job has completed its execution.
-             *  - `"Failed"` means the job has failed its execution.
-             *  - `"Suspended"` means the job has been suspended.
              */
             type: pulumi.Input<string>;
         }
@@ -5549,8 +5544,6 @@ export namespace batch {
             selector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
             /**
              * Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
-             *
-             * This field is beta-level, gated by SuspendJob feature flag (enabled by default).
              */
             suspend?: pulumi.Input<boolean>;
             /**
@@ -5919,8 +5912,6 @@ export namespace certificates {
              *   3. Signer whose configured minimum is longer than the requested duration
              *
              * The minimum valid value for expirationSeconds is 600, i.e. 10 minutes.
-             *
-             * As of v1.22, this field is beta and is controlled via the CSRDuration feature gate.
              */
             expirationSeconds?: pulumi.Input<number>;
             /**
@@ -7896,11 +7887,6 @@ export namespace core {
             min?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
              * Type of resource that this limit applies to.
-             *
-             * Possible enum values:
-             *  - `"Container"` Limit that applies to all containers in a namespace
-             *  - `"PersistentVolumeClaim"` Limit that applies to all persistent volume claims in a namespace
-             *  - `"Pod"` Limit that applies to all pods in a namespace
              */
             type: pulumi.Input<string>;
         }
@@ -8024,13 +8010,6 @@ export namespace core {
             status: pulumi.Input<string>;
             /**
              * Type of namespace controller condition.
-             *
-             * Possible enum values:
-             *  - `"NamespaceContentRemaining"` contains information about resources remaining in a namespace.
-             *  - `"NamespaceDeletionContentFailure"` contains information about namespace deleter errors during deletion of resources.
-             *  - `"NamespaceDeletionDiscoveryFailure"` contains information about namespace deleter errors during resource discovery.
-             *  - `"NamespaceDeletionGroupVersionParsingFailure"` contains information about namespace deleter errors parsing GV for legacy types.
-             *  - `"NamespaceFinalizersRemaining"` contains information about which finalizers are on resources remaining in a namespace.
              */
             type: pulumi.Input<string>;
         }
@@ -8099,13 +8078,6 @@ export namespace core {
             address: pulumi.Input<string>;
             /**
              * Node address type, one of Hostname, ExternalIP or InternalIP.
-             *
-             * Possible enum values:
-             *  - `"ExternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeExternalIP. The IP it resolves to may or may not be a listed NodeExternalIP address.
-             *  - `"ExternalIP"` identifies an IP address which is, in some way, intended to be more usable from outside the cluster then an internal IP, though no specific semantics are defined. It may be a globally routable IP, though it is not required to be. External IPs may be assigned directly to an interface on the node, like a NodeInternalIP, or alternatively, packets sent to the external IP may be NAT'ed to an internal node IP rather than being delivered directly (making the IP less efficient for node-to-node traffic than a NodeInternalIP).
-             *  - `"Hostname"` identifies a name of the node. Although every node can be assumed to have a NodeAddress of this type, its exact syntax and semantics are not defined, and are not consistent between different clusters.
-             *  - `"InternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeInternalIP. The IP it resolves to may or may not be a listed NodeInternalIP address.
-             *  - `"InternalIP"` identifies an IP address which is assigned to one of the node's network interfaces. Every node should have at least one address of this type. An internal IP is normally expected to be reachable from every other node, but may not be visible to hosts outside the cluster. By default it is assumed that kube-apiserver can reach node internal IPs, though it is possible to configure clusters where this is not the case. NodeInternalIP is the default type of node IP, and does not necessarily imply that the IP is ONLY reachable internally. If a node has multiple internal IPs, no specific semantics are assigned to the additional IPs.
              */
             type: pulumi.Input<string>;
         }
@@ -8150,13 +8122,6 @@ export namespace core {
             status: pulumi.Input<string>;
             /**
              * Type of node condition.
-             *
-             * Possible enum values:
-             *  - `"DiskPressure"` means the kubelet is under pressure due to insufficient available disk.
-             *  - `"MemoryPressure"` means the kubelet is under pressure due to insufficient available memory.
-             *  - `"NetworkUnavailable"` means that network for the node is not correctly configured.
-             *  - `"PIDPressure"` means the kubelet is under pressure due to insufficient available PID.
-             *  - `"Ready"` means kubelet is healthy and ready to accept pods.
              */
             type: pulumi.Input<string>;
         }
@@ -8509,14 +8474,6 @@ export namespace core {
              */
             reason?: pulumi.Input<string>;
             status: pulumi.Input<string>;
-            /**
-             *
-             *
-             *
-             * Possible enum values:
-             *  - `"FileSystemResizePending"` - controller resize is finished and a file system resize is pending on node
-             *  - `"Resizing"` - a user trigger resize of pvc has been started
-             */
             type: pulumi.Input<string>;
         }
 
@@ -8860,11 +8817,11 @@ export namespace core {
              */
             labelSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
             /**
-             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+             * A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces.
              */
             namespaceSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
             /**
-             * namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace"
+             * namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace".
              */
             namespaces?: pulumi.Input<pulumi.Input<string>[]>;
             /**
@@ -8913,12 +8870,6 @@ export namespace core {
             status: pulumi.Input<string>;
             /**
              * Type is the type of the condition. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
-             *
-             * Possible enum values:
-             *  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-             *  - `"Initialized"` means that all init containers in the pod have started successfully.
-             *  - `"PodScheduled"` represents status of the scheduling process for this pod.
-             *  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
              */
             type: pulumi.Input<string>;
         }
@@ -8979,12 +8930,6 @@ export namespace core {
         export interface PodReadinessGate {
             /**
              * ConditionType refers to a condition in the pod's condition list with matching type.
-             *
-             * Possible enum values:
-             *  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-             *  - `"Initialized"` means that all init containers in the pod have started successfully.
-             *  - `"PodScheduled"` represents status of the scheduling process for this pod.
-             *  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
              */
             conditionType: pulumi.Input<string>;
         }
@@ -9126,7 +9071,7 @@ export namespace core {
              */
             os?: pulumi.Input<inputs.core.v1.PodOS>;
             /**
-             * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+             * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
              */
             overhead?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
             /**
@@ -9155,7 +9100,7 @@ export namespace core {
              */
             restartPolicy?: pulumi.Input<string>;
             /**
-             * RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.
+             * RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
              */
             runtimeClassName?: pulumi.Input<string>;
             /**
@@ -9872,7 +9817,7 @@ export namespace core {
              *
              * Possible enum values:
              *  - `"BestEffort"` Match all pod objects that have best effort quality of service
-             *  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned. This is a beta feature enabled by the PodAffinityNamespaceSelector feature flag.
+             *  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.
              *  - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service
              *  - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil
              *  - `"PriorityClass"` Match all pod objects that have priority class mentioned
@@ -10168,7 +10113,7 @@ export namespace core {
              */
             metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
             /**
-             * Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
+             * Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret
              */
             secrets?: pulumi.Input<pulumi.Input<inputs.core.v1.ObjectReference>[]>;
         }
@@ -10533,11 +10478,19 @@ export namespace core {
              */
             labelSelector?: pulumi.Input<inputs.meta.v1.LabelSelector>;
             /**
-             * MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+             * MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
              */
             maxSkew: pulumi.Input<number>;
             /**
-             * TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+             * MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.
+             *
+             * For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+             *
+             * This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
+             */
+            minDomains?: pulumi.Input<number>;
+            /**
+             * TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes match the node selector. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It's a required field.
              */
             topologyKey: pulumi.Input<string>;
             /**
@@ -13485,7 +13438,7 @@ export namespace meta {
              */
             resourceVersion?: pulumi.Input<string>;
             /**
-             * selfLink is DEPRECATED read-only field that is no longer populated by the system.
+             * Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
              */
             selfLink?: pulumi.Input<string>;
         }
@@ -13597,7 +13550,7 @@ export namespace meta {
              */
             resourceVersion?: pulumi.Input<string>;
             /**
-             * selfLink is DEPRECATED read-only field that is no longer populated by the system.
+             * Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
              */
             selfLink?: pulumi.Input<string>;
             /**
@@ -14301,7 +14254,6 @@ export namespace node {
             /**
              * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see
              *  https://kubernetes.io/docs/concepts/scheduling-eviction/pod-overhead/
-             * This field is in beta starting v1.18 and is only honored by servers that enable the PodOverhead feature.
              */
             overhead?: pulumi.Input<inputs.node.v1.Overhead>;
             /**
@@ -14337,7 +14289,7 @@ export namespace node {
         }
 
         /**
-         * RuntimeClass defines a class of container runtime supported in the cluster. The RuntimeClass is used to determine which container runtime is used to run all containers in a pod. RuntimeClasses are (currently) manually defined by a user or cluster provisioner, and referenced in the PodSpec. The Kubelet is responsible for resolving the RuntimeClassName reference before running the pod.  For more details, see https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
+         * RuntimeClass defines a class of container runtime supported in the cluster. The RuntimeClass is used to determine which container runtime is used to run all containers in a pod. RuntimeClasses are (currently) manually defined by a user or cluster provisioner, and referenced in the PodSpec. The Kubelet is responsible for resolving the RuntimeClassName reference before running the pod.  For more details, see https://git.k8s.io/enhancements/keps/sig-node/runtime-class.md
          */
         export interface RuntimeClass {
             /**
@@ -14363,11 +14315,11 @@ export namespace node {
          */
         export interface RuntimeClassSpec {
             /**
-             * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+             * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://git.k8s.io/enhancements/keps/sig-node/20190226-pod-overhead.md This field is alpha-level as of Kubernetes v1.15, and is only honored by servers that enable the PodOverhead feature.
              */
             overhead?: pulumi.Input<inputs.node.v1alpha1.Overhead>;
             /**
-             * RuntimeHandler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The RuntimeHandler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.
+             * RuntimeHandler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called "runc" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The RuntimeHandler must conform to the DNS Label (RFC 1123) requirements and is immutable.
              */
             runtimeHandler: pulumi.Input<string>;
             /**
@@ -14423,7 +14375,7 @@ export namespace node {
              */
             metadata?: pulumi.Input<inputs.meta.v1.ObjectMeta>;
             /**
-             * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+             * Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
              */
             overhead?: pulumi.Input<inputs.node.v1beta1.Overhead>;
             /**

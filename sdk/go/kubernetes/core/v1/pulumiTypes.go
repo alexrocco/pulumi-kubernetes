@@ -12659,11 +12659,6 @@ type LimitRangeItem struct {
 	// Min usage constraints on this kind by resource name.
 	Min map[string]string `pulumi:"min"`
 	// Type of resource that this limit applies to.
-	//
-	// Possible enum values:
-	//  - `"Container"` Limit that applies to all containers in a namespace
-	//  - `"PersistentVolumeClaim"` Limit that applies to all persistent volume claims in a namespace
-	//  - `"Pod"` Limit that applies to all pods in a namespace
 	Type string `pulumi:"type"`
 }
 
@@ -12691,11 +12686,6 @@ type LimitRangeItemArgs struct {
 	// Min usage constraints on this kind by resource name.
 	Min pulumi.StringMapInput `pulumi:"min"`
 	// Type of resource that this limit applies to.
-	//
-	// Possible enum values:
-	//  - `"Container"` Limit that applies to all containers in a namespace
-	//  - `"PersistentVolumeClaim"` Limit that applies to all persistent volume claims in a namespace
-	//  - `"Pod"` Limit that applies to all pods in a namespace
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -12777,11 +12767,6 @@ func (o LimitRangeItemOutput) Min() pulumi.StringMapOutput {
 }
 
 // Type of resource that this limit applies to.
-//
-// Possible enum values:
-//  - `"Container"` Limit that applies to all containers in a namespace
-//  - `"PersistentVolumeClaim"` Limit that applies to all persistent volume claims in a namespace
-//  - `"Pod"` Limit that applies to all pods in a namespace
 func (o LimitRangeItemOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LimitRangeItem) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -13952,13 +13937,6 @@ type NamespaceCondition struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status string `pulumi:"status"`
 	// Type of namespace controller condition.
-	//
-	// Possible enum values:
-	//  - `"NamespaceContentRemaining"` contains information about resources remaining in a namespace.
-	//  - `"NamespaceDeletionContentFailure"` contains information about namespace deleter errors during deletion of resources.
-	//  - `"NamespaceDeletionDiscoveryFailure"` contains information about namespace deleter errors during resource discovery.
-	//  - `"NamespaceDeletionGroupVersionParsingFailure"` contains information about namespace deleter errors parsing GV for legacy types.
-	//  - `"NamespaceFinalizersRemaining"` contains information about which finalizers are on resources remaining in a namespace.
 	Type string `pulumi:"type"`
 }
 
@@ -13981,13 +13959,6 @@ type NamespaceConditionArgs struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status pulumi.StringInput `pulumi:"status"`
 	// Type of namespace controller condition.
-	//
-	// Possible enum values:
-	//  - `"NamespaceContentRemaining"` contains information about resources remaining in a namespace.
-	//  - `"NamespaceDeletionContentFailure"` contains information about namespace deleter errors during deletion of resources.
-	//  - `"NamespaceDeletionDiscoveryFailure"` contains information about namespace deleter errors during resource discovery.
-	//  - `"NamespaceDeletionGroupVersionParsingFailure"` contains information about namespace deleter errors parsing GV for legacy types.
-	//  - `"NamespaceFinalizersRemaining"` contains information about which finalizers are on resources remaining in a namespace.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -14061,13 +14032,6 @@ func (o NamespaceConditionOutput) Status() pulumi.StringOutput {
 }
 
 // Type of namespace controller condition.
-//
-// Possible enum values:
-//  - `"NamespaceContentRemaining"` contains information about resources remaining in a namespace.
-//  - `"NamespaceDeletionContentFailure"` contains information about namespace deleter errors during deletion of resources.
-//  - `"NamespaceDeletionDiscoveryFailure"` contains information about namespace deleter errors during resource discovery.
-//  - `"NamespaceDeletionGroupVersionParsingFailure"` contains information about namespace deleter errors parsing GV for legacy types.
-//  - `"NamespaceFinalizersRemaining"` contains information about which finalizers are on resources remaining in a namespace.
 func (o NamespaceConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NamespaceCondition) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -14630,13 +14594,6 @@ type NodeAddress struct {
 	// The node address.
 	Address string `pulumi:"address"`
 	// Node address type, one of Hostname, ExternalIP or InternalIP.
-	//
-	// Possible enum values:
-	//  - `"ExternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeExternalIP. The IP it resolves to may or may not be a listed NodeExternalIP address.
-	//  - `"ExternalIP"` identifies an IP address which is, in some way, intended to be more usable from outside the cluster then an internal IP, though no specific semantics are defined. It may be a globally routable IP, though it is not required to be. External IPs may be assigned directly to an interface on the node, like a NodeInternalIP, or alternatively, packets sent to the external IP may be NAT'ed to an internal node IP rather than being delivered directly (making the IP less efficient for node-to-node traffic than a NodeInternalIP).
-	//  - `"Hostname"` identifies a name of the node. Although every node can be assumed to have a NodeAddress of this type, its exact syntax and semantics are not defined, and are not consistent between different clusters.
-	//  - `"InternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeInternalIP. The IP it resolves to may or may not be a listed NodeInternalIP address.
-	//  - `"InternalIP"` identifies an IP address which is assigned to one of the node's network interfaces. Every node should have at least one address of this type. An internal IP is normally expected to be reachable from every other node, but may not be visible to hosts outside the cluster. By default it is assumed that kube-apiserver can reach node internal IPs, though it is possible to configure clusters where this is not the case. NodeInternalIP is the default type of node IP, and does not necessarily imply that the IP is ONLY reachable internally. If a node has multiple internal IPs, no specific semantics are assigned to the additional IPs.
 	Type string `pulumi:"type"`
 }
 
@@ -14656,13 +14613,6 @@ type NodeAddressArgs struct {
 	// The node address.
 	Address pulumi.StringInput `pulumi:"address"`
 	// Node address type, one of Hostname, ExternalIP or InternalIP.
-	//
-	// Possible enum values:
-	//  - `"ExternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeExternalIP. The IP it resolves to may or may not be a listed NodeExternalIP address.
-	//  - `"ExternalIP"` identifies an IP address which is, in some way, intended to be more usable from outside the cluster then an internal IP, though no specific semantics are defined. It may be a globally routable IP, though it is not required to be. External IPs may be assigned directly to an interface on the node, like a NodeInternalIP, or alternatively, packets sent to the external IP may be NAT'ed to an internal node IP rather than being delivered directly (making the IP less efficient for node-to-node traffic than a NodeInternalIP).
-	//  - `"Hostname"` identifies a name of the node. Although every node can be assumed to have a NodeAddress of this type, its exact syntax and semantics are not defined, and are not consistent between different clusters.
-	//  - `"InternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeInternalIP. The IP it resolves to may or may not be a listed NodeInternalIP address.
-	//  - `"InternalIP"` identifies an IP address which is assigned to one of the node's network interfaces. Every node should have at least one address of this type. An internal IP is normally expected to be reachable from every other node, but may not be visible to hosts outside the cluster. By default it is assumed that kube-apiserver can reach node internal IPs, though it is possible to configure clusters where this is not the case. NodeInternalIP is the default type of node IP, and does not necessarily imply that the IP is ONLY reachable internally. If a node has multiple internal IPs, no specific semantics are assigned to the additional IPs.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -14724,13 +14674,6 @@ func (o NodeAddressOutput) Address() pulumi.StringOutput {
 }
 
 // Node address type, one of Hostname, ExternalIP or InternalIP.
-//
-// Possible enum values:
-//  - `"ExternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeExternalIP. The IP it resolves to may or may not be a listed NodeExternalIP address.
-//  - `"ExternalIP"` identifies an IP address which is, in some way, intended to be more usable from outside the cluster then an internal IP, though no specific semantics are defined. It may be a globally routable IP, though it is not required to be. External IPs may be assigned directly to an interface on the node, like a NodeInternalIP, or alternatively, packets sent to the external IP may be NAT'ed to an internal node IP rather than being delivered directly (making the IP less efficient for node-to-node traffic than a NodeInternalIP).
-//  - `"Hostname"` identifies a name of the node. Although every node can be assumed to have a NodeAddress of this type, its exact syntax and semantics are not defined, and are not consistent between different clusters.
-//  - `"InternalDNS"` identifies a DNS name which resolves to an IP address which has the characteristics of a NodeInternalIP. The IP it resolves to may or may not be a listed NodeInternalIP address.
-//  - `"InternalIP"` identifies an IP address which is assigned to one of the node's network interfaces. Every node should have at least one address of this type. An internal IP is normally expected to be reachable from every other node, but may not be visible to hosts outside the cluster. By default it is assumed that kube-apiserver can reach node internal IPs, though it is possible to configure clusters where this is not the case. NodeInternalIP is the default type of node IP, and does not necessarily imply that the IP is ONLY reachable internally. If a node has multiple internal IPs, no specific semantics are assigned to the additional IPs.
 func (o NodeAddressOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NodeAddress) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -14929,13 +14872,6 @@ type NodeCondition struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status string `pulumi:"status"`
 	// Type of node condition.
-	//
-	// Possible enum values:
-	//  - `"DiskPressure"` means the kubelet is under pressure due to insufficient available disk.
-	//  - `"MemoryPressure"` means the kubelet is under pressure due to insufficient available memory.
-	//  - `"NetworkUnavailable"` means that network for the node is not correctly configured.
-	//  - `"PIDPressure"` means the kubelet is under pressure due to insufficient available PID.
-	//  - `"Ready"` means kubelet is healthy and ready to accept pods.
 	Type string `pulumi:"type"`
 }
 
@@ -14963,13 +14899,6 @@ type NodeConditionArgs struct {
 	// Status of the condition, one of True, False, Unknown.
 	Status pulumi.StringInput `pulumi:"status"`
 	// Type of node condition.
-	//
-	// Possible enum values:
-	//  - `"DiskPressure"` means the kubelet is under pressure due to insufficient available disk.
-	//  - `"MemoryPressure"` means the kubelet is under pressure due to insufficient available memory.
-	//  - `"NetworkUnavailable"` means that network for the node is not correctly configured.
-	//  - `"PIDPressure"` means the kubelet is under pressure due to insufficient available PID.
-	//  - `"Ready"` means kubelet is healthy and ready to accept pods.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -15051,13 +14980,6 @@ func (o NodeConditionOutput) Status() pulumi.StringOutput {
 }
 
 // Type of node condition.
-//
-// Possible enum values:
-//  - `"DiskPressure"` means the kubelet is under pressure due to insufficient available disk.
-//  - `"MemoryPressure"` means the kubelet is under pressure due to insufficient available memory.
-//  - `"NetworkUnavailable"` means that network for the node is not correctly configured.
-//  - `"PIDPressure"` means the kubelet is under pressure due to insufficient available PID.
-//  - `"Ready"` means kubelet is healthy and ready to accept pods.
 func (o NodeConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NodeCondition) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -17688,10 +17610,7 @@ type PersistentVolumeClaimCondition struct {
 	// reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
 	Reason *string `pulumi:"reason"`
 	Status string  `pulumi:"status"`
-	// Possible enum values:
-	//  - `"FileSystemResizePending"` - controller resize is finished and a file system resize is pending on node
-	//  - `"Resizing"` - a user trigger resize of pvc has been started
-	Type string `pulumi:"type"`
+	Type   string  `pulumi:"type"`
 }
 
 // PersistentVolumeClaimConditionInput is an input type that accepts PersistentVolumeClaimConditionArgs and PersistentVolumeClaimConditionOutput values.
@@ -17716,10 +17635,7 @@ type PersistentVolumeClaimConditionArgs struct {
 	// reason is a unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
 	Reason pulumi.StringPtrInput `pulumi:"reason"`
 	Status pulumi.StringInput    `pulumi:"status"`
-	// Possible enum values:
-	//  - `"FileSystemResizePending"` - controller resize is finished and a file system resize is pending on node
-	//  - `"Resizing"` - a user trigger resize of pvc has been started
-	Type pulumi.StringInput `pulumi:"type"`
+	Type   pulumi.StringInput    `pulumi:"type"`
 }
 
 func (PersistentVolumeClaimConditionArgs) ElementType() reflect.Type {
@@ -17798,9 +17714,6 @@ func (o PersistentVolumeClaimConditionOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v PersistentVolumeClaimCondition) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Possible enum values:
-//  - `"FileSystemResizePending"` - controller resize is finished and a file system resize is pending on node
-//  - `"Resizing"` - a user trigger resize of pvc has been started
 func (o PersistentVolumeClaimConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v PersistentVolumeClaimCondition) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -20277,9 +20190,9 @@ func (o PodAffinityPtrOutput) RequiredDuringSchedulingIgnoredDuringExecution() P
 type PodAffinityTerm struct {
 	// A label query over a set of resources, in this case pods.
 	LabelSelector *metav1.LabelSelector `pulumi:"labelSelector"`
-	// A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+	// A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces.
 	NamespaceSelector *metav1.LabelSelector `pulumi:"namespaceSelector"`
-	// namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace"
+	// namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace".
 	Namespaces []string `pulumi:"namespaces"`
 	// This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 	TopologyKey string `pulumi:"topologyKey"`
@@ -20300,9 +20213,9 @@ type PodAffinityTermInput interface {
 type PodAffinityTermArgs struct {
 	// A label query over a set of resources, in this case pods.
 	LabelSelector metav1.LabelSelectorPtrInput `pulumi:"labelSelector"`
-	// A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+	// A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces.
 	NamespaceSelector metav1.LabelSelectorPtrInput `pulumi:"namespaceSelector"`
-	// namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace"
+	// namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace".
 	Namespaces pulumi.StringArrayInput `pulumi:"namespaces"`
 	// This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
 	TopologyKey pulumi.StringInput `pulumi:"topologyKey"`
@@ -20365,12 +20278,12 @@ func (o PodAffinityTermOutput) LabelSelector() metav1.LabelSelectorPtrOutput {
 	return o.ApplyT(func(v PodAffinityTerm) *metav1.LabelSelector { return v.LabelSelector }).(metav1.LabelSelectorPtrOutput)
 }
 
-// A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled.
+// A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces.
 func (o PodAffinityTermOutput) NamespaceSelector() metav1.LabelSelectorPtrOutput {
 	return o.ApplyT(func(v PodAffinityTerm) *metav1.LabelSelector { return v.NamespaceSelector }).(metav1.LabelSelectorPtrOutput)
 }
 
-// namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace"
+// namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace".
 func (o PodAffinityTermOutput) Namespaces() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v PodAffinityTerm) []string { return v.Namespaces }).(pulumi.StringArrayOutput)
 }
@@ -20574,12 +20487,6 @@ type PodCondition struct {
 	// Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
 	Status string `pulumi:"status"`
 	// Type is the type of the condition. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
-	//
-	// Possible enum values:
-	//  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-	//  - `"Initialized"` means that all init containers in the pod have started successfully.
-	//  - `"PodScheduled"` represents status of the scheduling process for this pod.
-	//  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
 	Type string `pulumi:"type"`
 }
 
@@ -20607,12 +20514,6 @@ type PodConditionArgs struct {
 	// Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
 	Status pulumi.StringInput `pulumi:"status"`
 	// Type is the type of the condition. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
-	//
-	// Possible enum values:
-	//  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-	//  - `"Initialized"` means that all init containers in the pod have started successfully.
-	//  - `"PodScheduled"` represents status of the scheduling process for this pod.
-	//  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -20694,12 +20595,6 @@ func (o PodConditionOutput) Status() pulumi.StringOutput {
 }
 
 // Type is the type of the condition. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
-//
-// Possible enum values:
-//  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-//  - `"Initialized"` means that all init containers in the pod have started successfully.
-//  - `"PodScheduled"` represents status of the scheduling process for this pod.
-//  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
 func (o PodConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v PodCondition) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -21336,12 +21231,6 @@ func (o PodOSPtrOutput) Name() pulumi.StringPtrOutput {
 // PodReadinessGate contains the reference to a pod condition
 type PodReadinessGate struct {
 	// ConditionType refers to a condition in the pod's condition list with matching type.
-	//
-	// Possible enum values:
-	//  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-	//  - `"Initialized"` means that all init containers in the pod have started successfully.
-	//  - `"PodScheduled"` represents status of the scheduling process for this pod.
-	//  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
 	ConditionType string `pulumi:"conditionType"`
 }
 
@@ -21359,12 +21248,6 @@ type PodReadinessGateInput interface {
 // PodReadinessGate contains the reference to a pod condition
 type PodReadinessGateArgs struct {
 	// ConditionType refers to a condition in the pod's condition list with matching type.
-	//
-	// Possible enum values:
-	//  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-	//  - `"Initialized"` means that all init containers in the pod have started successfully.
-	//  - `"PodScheduled"` represents status of the scheduling process for this pod.
-	//  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
 	ConditionType pulumi.StringInput `pulumi:"conditionType"`
 }
 
@@ -21421,12 +21304,6 @@ func (o PodReadinessGateOutput) ToPodReadinessGateOutputWithContext(ctx context.
 }
 
 // ConditionType refers to a condition in the pod's condition list with matching type.
-//
-// Possible enum values:
-//  - `"ContainersReady"` indicates whether all containers in the pod are ready.
-//  - `"Initialized"` means that all init containers in the pod have started successfully.
-//  - `"PodScheduled"` represents status of the scheduling process for this pod.
-//  - `"Ready"` means the pod is able to service requests and should be added to the load balancing pools of all matching services.
 func (o PodReadinessGateOutput) ConditionType() pulumi.StringOutput {
 	return o.ApplyT(func(v PodReadinessGate) string { return v.ConditionType }).(pulumi.StringOutput)
 }
@@ -21826,7 +21703,7 @@ type PodSpec struct {
 	//
 	// If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup This is an alpha field and requires the IdentifyPodOS feature
 	Os *PodOS `pulumi:"os"`
-	// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+	// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
 	Overhead map[string]string `pulumi:"overhead"`
 	// PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
 	PreemptionPolicy *string `pulumi:"preemptionPolicy"`
@@ -21843,7 +21720,7 @@ type PodSpec struct {
 	//  - `"Never"`
 	//  - `"OnFailure"`
 	RestartPolicy *string `pulumi:"restartPolicy"`
-	// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.
+	// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
 	RuntimeClassName *string `pulumi:"runtimeClassName"`
 	// If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
 	SchedulerName *string `pulumi:"schedulerName"`
@@ -21928,7 +21805,7 @@ type PodSpecArgs struct {
 	//
 	// If the OS field is set to windows, following fields must be unset: - spec.hostPID - spec.hostIPC - spec.securityContext.seLinuxOptions - spec.securityContext.seccompProfile - spec.securityContext.fsGroup - spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls - spec.shareProcessNamespace - spec.securityContext.runAsUser - spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups - spec.containers[*].securityContext.seLinuxOptions - spec.containers[*].securityContext.seccompProfile - spec.containers[*].securityContext.capabilities - spec.containers[*].securityContext.readOnlyRootFilesystem - spec.containers[*].securityContext.privileged - spec.containers[*].securityContext.allowPrivilegeEscalation - spec.containers[*].securityContext.procMount - spec.containers[*].securityContext.runAsUser - spec.containers[*].securityContext.runAsGroup This is an alpha field and requires the IdentifyPodOS feature
 	Os PodOSPtrInput `pulumi:"os"`
-	// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+	// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
 	Overhead pulumi.StringMapInput `pulumi:"overhead"`
 	// PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset.
 	PreemptionPolicy pulumi.StringPtrInput `pulumi:"preemptionPolicy"`
@@ -21945,7 +21822,7 @@ type PodSpecArgs struct {
 	//  - `"Never"`
 	//  - `"OnFailure"`
 	RestartPolicy pulumi.StringPtrInput `pulumi:"restartPolicy"`
-	// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.
+	// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
 	RuntimeClassName pulumi.StringPtrInput `pulumi:"runtimeClassName"`
 	// If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
 	SchedulerName pulumi.StringPtrInput `pulumi:"schedulerName"`
@@ -22149,7 +22026,7 @@ func (o PodSpecOutput) Os() PodOSPtrOutput {
 	return o.ApplyT(func(v PodSpec) *PodOS { return v.Os }).(PodOSPtrOutput)
 }
 
-// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
 func (o PodSpecOutput) Overhead() pulumi.StringMapOutput {
 	return o.ApplyT(func(v PodSpec) map[string]string { return v.Overhead }).(pulumi.StringMapOutput)
 }
@@ -22184,7 +22061,7 @@ func (o PodSpecOutput) RestartPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PodSpec) *string { return v.RestartPolicy }).(pulumi.StringPtrOutput)
 }
 
-// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.
+// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
 func (o PodSpecOutput) RuntimeClassName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PodSpec) *string { return v.RuntimeClassName }).(pulumi.StringPtrOutput)
 }
@@ -22458,7 +22335,7 @@ func (o PodSpecPtrOutput) Os() PodOSPtrOutput {
 	}).(PodOSPtrOutput)
 }
 
-// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md This field is beta-level as of Kubernetes v1.18, and is only honored by servers that enable the PodOverhead feature.
+// Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
 func (o PodSpecPtrOutput) Overhead() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *PodSpec) map[string]string {
 		if v == nil {
@@ -22523,7 +22400,7 @@ func (o PodSpecPtrOutput) RestartPolicy() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class This is a beta feature as of Kubernetes v1.14.
+// RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
 func (o PodSpecPtrOutput) RuntimeClassName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PodSpec) *string {
 		if v == nil {
@@ -27771,7 +27648,7 @@ type ScopedResourceSelectorRequirement struct {
 	//
 	// Possible enum values:
 	//  - `"BestEffort"` Match all pod objects that have best effort quality of service
-	//  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned. This is a beta feature enabled by the PodAffinityNamespaceSelector feature flag.
+	//  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.
 	//  - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service
 	//  - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil
 	//  - `"PriorityClass"` Match all pod objects that have priority class mentioned
@@ -27806,7 +27683,7 @@ type ScopedResourceSelectorRequirementArgs struct {
 	//
 	// Possible enum values:
 	//  - `"BestEffort"` Match all pod objects that have best effort quality of service
-	//  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned. This is a beta feature enabled by the PodAffinityNamespaceSelector feature flag.
+	//  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.
 	//  - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service
 	//  - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil
 	//  - `"PriorityClass"` Match all pod objects that have priority class mentioned
@@ -27883,7 +27760,7 @@ func (o ScopedResourceSelectorRequirementOutput) Operator() pulumi.StringOutput 
 //
 // Possible enum values:
 //  - `"BestEffort"` Match all pod objects that have best effort quality of service
-//  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned. This is a beta feature enabled by the PodAffinityNamespaceSelector feature flag.
+//  - `"CrossNamespacePodAffinity"` Match all pod objects that have cross-namespace pod (anti)affinity mentioned.
 //  - `"NotBestEffort"` Match all pod objects that do not have best effort quality of service
 //  - `"NotTerminating"` Match all pod objects where spec.activeDeadlineSeconds is nil
 //  - `"PriorityClass"` Match all pod objects that have priority class mentioned
@@ -29812,7 +29689,7 @@ type ServiceAccountType struct {
 	Kind *string `pulumi:"kind"`
 	// Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 	Metadata *metav1.ObjectMeta `pulumi:"metadata"`
-	// Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
+	// Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret
 	Secrets []ObjectReference `pulumi:"secrets"`
 }
 
@@ -29839,7 +29716,7 @@ type ServiceAccountTypeArgs struct {
 	Kind pulumi.StringPtrInput `pulumi:"kind"`
 	// Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 	Metadata metav1.ObjectMetaPtrInput `pulumi:"metadata"`
-	// Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
+	// Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret
 	Secrets ObjectReferenceArrayInput `pulumi:"secrets"`
 }
 
@@ -29920,7 +29797,7 @@ func (o ServiceAccountTypeOutput) Metadata() metav1.ObjectMetaPtrOutput {
 	return o.ApplyT(func(v ServiceAccountType) *metav1.ObjectMeta { return v.Metadata }).(metav1.ObjectMetaPtrOutput)
 }
 
-// Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
+// Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret
 func (o ServiceAccountTypeOutput) Secrets() ObjectReferenceArrayOutput {
 	return o.ApplyT(func(v ServiceAccountType) []ObjectReference { return v.Secrets }).(ObjectReferenceArrayOutput)
 }
@@ -32556,9 +32433,15 @@ func (o TopologySelectorTermArrayOutput) Index(i pulumi.IntInput) TopologySelect
 type TopologySpreadConstraint struct {
 	// LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
 	LabelSelector *metav1.LabelSelector `pulumi:"labelSelector"`
-	// MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+	// MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
 	MaxSkew int `pulumi:"maxSkew"`
-	// TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+	// MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.
+	//
+	// For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+	//
+	// This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
+	MinDomains *int `pulumi:"minDomains"`
+	// TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes match the node selector. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It's a required field.
 	TopologyKey string `pulumi:"topologyKey"`
 	// WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,
 	//   but giving higher precedence to topologies that would help reduce the
@@ -32586,9 +32469,15 @@ type TopologySpreadConstraintInput interface {
 type TopologySpreadConstraintArgs struct {
 	// LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
 	LabelSelector metav1.LabelSelectorPtrInput `pulumi:"labelSelector"`
-	// MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+	// MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
 	MaxSkew pulumi.IntInput `pulumi:"maxSkew"`
-	// TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+	// MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.
+	//
+	// For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+	//
+	// This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
+	MinDomains pulumi.IntPtrInput `pulumi:"minDomains"`
+	// TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes match the node selector. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It's a required field.
 	TopologyKey pulumi.StringInput `pulumi:"topologyKey"`
 	// WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,
 	//   but giving higher precedence to topologies that would help reduce the
@@ -32658,12 +32547,21 @@ func (o TopologySpreadConstraintOutput) LabelSelector() metav1.LabelSelectorPtrO
 	return o.ApplyT(func(v TopologySpreadConstraint) *metav1.LabelSelector { return v.LabelSelector }).(metav1.LabelSelectorPtrOutput)
 }
 
-// MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
+// MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. The global minimum is the minimum number of matching pods in an eligible domain or zero if the number of eligible domains is less than MinDomains. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 2/2/1: In this case, the global minimum is 1. | zone1 | zone2 | zone3 | |  P P  |  P P  |   P   | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 2/2/2; scheduling it onto zone1(zone2) would make the ActualSkew(3-1) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.
 func (o TopologySpreadConstraintOutput) MaxSkew() pulumi.IntOutput {
 	return o.ApplyT(func(v TopologySpreadConstraint) int { return v.MaxSkew }).(pulumi.IntOutput)
 }
 
-// TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+// MinDomains indicates a minimum number of eligible domains. When the number of eligible domains with matching topology keys is less than minDomains, Pod Topology Spread treats "global minimum" as 0, and then the calculation of Skew is performed. And when the number of eligible domains with matching topology keys equals or greater than minDomains, this value has no effect on scheduling. As a result, when the number of eligible domains is less than minDomains, scheduler won't schedule more than maxSkew Pods to those domains. If value is nil, the constraint behaves as if MinDomains is equal to 1. Valid values are integers greater than 0. When value is not nil, WhenUnsatisfiable must be DoNotSchedule.
+//
+// For example, in a 3-zone cluster, MaxSkew is set to 2, MinDomains is set to 5 and pods with the same labelSelector spread as 2/2/2: | zone1 | zone2 | zone3 | |  P P  |  P P  |  P P  | The number of domains is less than 5(MinDomains), so "global minimum" is treated as 0. In this situation, new pod with the same labelSelector cannot be scheduled, because computed skew will be 3(3 - 0) if new Pod is scheduled to any of the three zones, it will violate MaxSkew.
+//
+// This is an alpha field and requires enabling MinDomainsInPodTopologySpread feature gate.
+func (o TopologySpreadConstraintOutput) MinDomains() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TopologySpreadConstraint) *int { return v.MinDomains }).(pulumi.IntPtrOutput)
+}
+
+// TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. We define a domain as a particular instance of a topology. Also, we define an eligible domain as a domain whose nodes match the node selector. e.g. If TopologyKey is "kubernetes.io/hostname", each Node is a domain of that topology. And, if TopologyKey is "topology.kubernetes.io/zone", each zone is a domain of that topology. It's a required field.
 func (o TopologySpreadConstraintOutput) TopologyKey() pulumi.StringOutput {
 	return o.ApplyT(func(v TopologySpreadConstraint) string { return v.TopologyKey }).(pulumi.StringOutput)
 }

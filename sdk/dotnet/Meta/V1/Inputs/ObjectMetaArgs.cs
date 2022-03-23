@@ -142,7 +142,7 @@ namespace Pulumi.Kubernetes.Types.Inputs.Meta.V1
         public Input<string>? ResourceVersion { get; set; }
 
         /// <summary>
-        /// selfLink is DEPRECATED read-only field that is no longer populated by the system.
+        /// Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
         /// </summary>
         [Input("selfLink")]
         public Input<string>? SelfLink { get; set; }

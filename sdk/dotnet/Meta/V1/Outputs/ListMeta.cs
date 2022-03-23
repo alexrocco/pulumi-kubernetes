@@ -29,7 +29,7 @@ namespace Pulumi.Kubernetes.Types.Outputs.Meta.V1
         /// </summary>
         public readonly string ResourceVersion;
         /// <summary>
-        /// selfLink is DEPRECATED read-only field that is no longer populated by the system.
+        /// Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
         /// </summary>
         public readonly string SelfLink;
 

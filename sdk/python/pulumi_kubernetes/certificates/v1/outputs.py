@@ -311,8 +311,6 @@ class CertificateSigningRequestSpec(dict):
                  3. Signer whose configured minimum is longer than the requested duration
                
                The minimum valid value for expirationSeconds is 600, i.e. 10 minutes.
-               
-               As of v1.22, this field is beta and is controlled via the CSRDuration feature gate.
         :param Mapping[str, Sequence[str]] extra: extra contains extra attributes of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
         :param Sequence[str] groups: groups contains group membership of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
         :param str uid: uid contains the uid of the user that created the CertificateSigningRequest. Populated by the API server on creation and immutable.
@@ -399,8 +397,6 @@ class CertificateSigningRequestSpec(dict):
           3. Signer whose configured minimum is longer than the requested duration
 
         The minimum valid value for expirationSeconds is 600, i.e. 10 minutes.
-
-        As of v1.22, this field is beta and is controlled via the CSRDuration feature gate.
         """
         return pulumi.get(self, "expiration_seconds")
 
